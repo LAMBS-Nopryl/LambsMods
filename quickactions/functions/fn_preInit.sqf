@@ -1,3 +1,8 @@
+/*
+  Author: diwako
+  Description:
+  Pre init method for CBA settings
+*/
 #define CBA_SETTINGS_CAT "Lambs Quick Actions"
 
 [

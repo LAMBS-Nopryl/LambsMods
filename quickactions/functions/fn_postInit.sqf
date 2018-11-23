@@ -4,6 +4,8 @@
   Post init method to set up eventhanlders and the like
 */
 
+if !(hasInterface) exitWith {};
+
 if (lambs_quickActions_add_detonator) then {
 	[["<t color='#FF0000'>Touch off all explosives</t>", {
 		[ace_player, -1, ([ace_player] call ACE_Explosives_fnc_getPlacedExplosives), "ACE_Clacker"] call ACE_Explosives_fnc_detonateExplosiveAll;

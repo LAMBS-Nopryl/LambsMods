@@ -1,3 +1,10 @@
+/*
+  Author: diwako
+  Description:
+  Applies fast rope action to every helicopter
+*/
+
+if !(hasInterface) exitWith {};
 params [["_helicopter",objNull]];
 
 if (!(lambs_quickActions_add_fast_rope) || {isNull _helicopter || {!(_helicopter isKindOf "Helicopter") }}) exitWith {};
