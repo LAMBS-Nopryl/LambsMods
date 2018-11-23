@@ -8,8 +8,8 @@ class CfgPatches
         requiredAddons[] = {
             "cba_common"
 		};
-		version = "1.0";
-		versionStr = "1.0";
+		version = "1.1";
+		versionStr = "1.1";
 		author = "diwako";
 		authorUrl = "https://www.diwako.net/";
     };
