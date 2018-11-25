@@ -18,9 +18,9 @@ private _fnc_doFix = {
 
 	private _fixLimbs = true;
 	{
-		_x params ["", "", "_partX",["_amount",0]];
+		_x params ["", "_damType", "_partX",["_amount",0]];
 		// Only parse injuries that are for the selected bodypart.
-		if ((_partX == _partOne || {_partX == _partTwo}) && {_amount > 0}) exitWith {
+		if ((_partX == _partOne || {_partX == _partTwo}) && {!(_damType in [6,7,8]) && {_amount > 0}}) exitWith {
 			_fixLimbs = false;
 		};
 	} forEach _openWounds;

@@ -60,22 +60,22 @@ class ACE_Medical_Actions {
         };
         class lambs_bandage_rArm: lambs_bandage_head {
             displayName = "Bandage Right Arm";
-            condition = "([_this select 1,3,true] call lambs_medical_fnc_getBodyPartBleeding) > 0 || {((_this select 1) getHit 'hands') > 0 && {([_this select 1,2,true] call lambs_medical_fnc_getBodyPartBleeding) == 0}}";
+            condition = "([_this select 1,3,true] call lambs_medical_fnc_getBodyPartBleeding) > 0 || {((_this select 1) getHit 'hands') > 0.2 && {([_this select 1,2,true] call lambs_medical_fnc_getBodyPartBleeding) == 0}}";
             callbackSuccess = "lambs_medical_fnc_bandageRightArm";
         };
         class lambs_bandage_lArm: lambs_bandage_head {
             displayName = "Bandage Left Arm";
-            condition = "([_this select 1,2,true] call lambs_medical_fnc_getBodyPartBleeding) > 0 || {((_this select 1) getHit 'hands') > 0  && {([_this select 1,3,true] call lambs_medical_fnc_getBodyPartBleeding) == 0}}";
+            condition = "([_this select 1,2,true] call lambs_medical_fnc_getBodyPartBleeding) > 0 || {((_this select 1) getHit 'hands') > 0.2  && {([_this select 1,3,true] call lambs_medical_fnc_getBodyPartBleeding) == 0}}";
             callbackSuccess = "lambs_medical_fnc_bandageLeftArm";
         };
         class lambs_bandage_rLeg: lambs_bandage_head {
             displayName = "Bandage Right Leg";
-            condition = "([_this select 1,5,true] call lambs_medical_fnc_getBodyPartBleeding) > 0 || {((_this select 1) getHit 'legs') > 0 && {([_this select 1,4,true] call lambs_medical_fnc_getBodyPartBleeding) == 0}}";
+            condition = "([_this select 1,5,true] call lambs_medical_fnc_getBodyPartBleeding) > 0 || {((_this select 1) getHit 'legs') > 0.2 && {([_this select 1,4,true] call lambs_medical_fnc_getBodyPartBleeding) == 0}}";
             callbackSuccess = "lambs_medical_fnc_bandageRightLeg";
         };
         class lambs_bandage_lLeg: lambs_bandage_head {
             displayName = "Bandage Left Leg";
-            condition = "([_this select 1,4,true] call lambs_medical_fnc_getBodyPartBleeding) > 0 || {((_this select 1) getHit 'legs') > 0 && {([_this select 1,5,true] call lambs_medical_fnc_getBodyPartBleeding) == 0}}";
+            condition = "([_this select 1,4,true] call lambs_medical_fnc_getBodyPartBleeding) > 0 || {((_this select 1) getHit 'legs') > 0.2 && {([_this select 1,5,true] call lambs_medical_fnc_getBodyPartBleeding) == 0}}";
             callbackSuccess = "lambs_medical_fnc_bandageLeftLeg";
         };
         class lambs_remove_tourniquette: RemoveTourniquet {
