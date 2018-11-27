@@ -27,6 +27,9 @@ class ACE_Medical_Actions {
             condition = "";
             callbackSuccess = "ace_medical_fnc_treatmentAdvanced_fullHeal";
         };
+        class CheckPulse: FieldDressing {
+            condition = "";
+        };
         class RemoveTourniquet: Tourniquet {
             callbackSuccess = "lambs_medical_fnc_removeTourniquet";
             condition = "(ace_medical_menu_MenuPFHID == -1 && {[_this select 1, _this select 2] call ace_medical_fnc_hasTourniquetAppliedTo})";
@@ -84,10 +87,6 @@ class ACE_Medical_Actions {
             items[] = {};
             allowedSelections[] = {"All"};
         };
-        /*class lambs_place_in_bodybag: BodyBag {
-            condition = "ace_medical_menu_MenuPFHID > -1";
-            items[] = {"ACE_bodyBag"};
-        };*/
         class lambs_surgicalKit: SurgicalKit {
             condition = "ace_medical_menu_MenuPFHID > -1";
             items[] = {"ACE_surgicalKit"};
