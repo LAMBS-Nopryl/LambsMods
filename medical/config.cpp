@@ -9,8 +9,8 @@ class CfgPatches
 			"ace_medical"
 			,"cba_common"
 		};
-		version = "1.1";
-		versionStr = "1.1";
+		version = "1.2";
+		versionStr = "1.2";
 		author = "diwako";
 		authorUrl = "https://www.diwako.net/";
     };
