@@ -5,4 +5,4 @@ Is it possible we can get a readme explanation of the changes to also provide on
 
 Some took to the changes quickly when it directly effects them in their role but for others some have had little reason to engage with them.
 
-It doesnt have to be huge, just a bullet explain a main change, and its intended effect.
+It doesnt have to be huge, just a bullet to explain a main change, and its intended effect.
