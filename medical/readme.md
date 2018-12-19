@@ -4,7 +4,7 @@ Lambs medical is a mod that latches on top ACE advanced medical and changes some
 Most notable are the changes to the medical menu.
 
 ## Bandages
-All bandages stats have been altered to be uniform to each other. Meaning all bandages will heal the same amount and all have no chance of wound reopening.
+All bandage stats have been altered to be uniform to each other. Meaning all bandages will heal the same amount and all have no chance of wound reopening.
 
 Currently the healing stat is set to "4".
 
@@ -23,7 +23,7 @@ Epinephrine has been changed to get unconscious people up faster for gameplay pu
 
 If the CBA setting is enabled and an epipen is used on an unconscious patient all needed states, such as blood volume, blood pressure, heartrate and pain levels will be if needed adjusted to wake that patient up.
 
-Meaning, a patient that has no stuffiness heartrate, too much pain, no blood pressure and no blood will have just barely enough to wake up and keep running, but the next bullet will send them back down again.
+Meaning, a patient that has no sufficient heartrate, too much pain, no blood pressure and no blood will have just barely enough to wake up and keep running, but the next bullet will send them back down again.
 
 The magic epipen will only work if the patient is stable, meaning they are unconscious, not bleeding, and all wounds are healed. If one of these conditions are not met, it will be a normal epipen.
 
