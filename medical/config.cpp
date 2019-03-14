@@ -4,13 +4,13 @@ class CfgPatches
     {
         units[] = {};
         weapons[] = {};
-        requiredVersion = 1.82;
+        requiredVersion = 1.90;
         requiredAddons[] = {
 			"ace_medical"
 			,"cba_common"
 		};
-		version = "1.2";
-		versionStr = "1.2";
+		version = "1.3";
+		versionStr = "1.3";
 		author = "diwako";
 		authorUrl = "https://www.diwako.net/";
     };
@@ -23,6 +23,5 @@ class Extended_PreInit_EventHandlers {
 };
 
 #include "ACE_Medical_Treatments.hpp"
-#include "medicalMenu.hpp"
 #include "cfgFunctions.hpp"
 #include "cfgWeapons.hpp"
