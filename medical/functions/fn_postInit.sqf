@@ -41,38 +41,4 @@ lambs_medical_menu_interaction_target = objNull;
 			} forEach ["packingbandage","elasticbandage","fielddressing","quikclot","tourniquet","removetourniquet"];
 		} forEach ["head","body","hand_r","hand_l","leg_r","leg_l"];
 	} forEach _units;
-	
-	private _display = (uiNamespace getVariable "ace_medical_menu_medicalMenu");
-	if (lambs_medical_showTourniquet) then {
-		lambs_medical_MenuPFHID = [{
-			// stop this pfeh if the menu is closed
-			if (ace_medical_menu_MenuPFHID == -1) exitWith {
-				[lambs_medical_MenuPFHID] call CBA_fnc_removePerFrameHandler;
-				lambs_medical_MenuPFHID = -1;
-			};
-			(_this select 0) params ["_display","_curTourniquets"];
-			if (isNull ACE_MEDICAL_MENU_INTERACTION_TARGET) then {
-				ACE_MEDICAL_MENU_INTERACTION_TARGET = ACE_player;
-			};
-			if (ACE_MEDICAL_MENU_INTERACTION_TARGET != lambs_medical_menu_interaction_target) then {
-				lambs_medical_menu_interaction_target = ACE_MEDICAL_MENU_INTERACTION_TARGET;
-				_curTourniquets = [-1,-1,-1,-1,-1,-1];
-				(_this select 0) set [1, _curTourniquets];
-			};
-			private _tourniquets = ACE_MEDICAL_MENU_INTERACTION_TARGET getVariable ["ace_medical_tourniquets", [0,0,0,0,0,0]];
-			private _idcs = [0,0,56,57,58,59];
-			for "_i" from 2 to 5 do {
-				private _tourn = _tourniquets select _i;
-				if (_tourn != (_curTourniquets select _i)) then {
-					_curTourniquets set [_i,_tourn];
-					private _opacity = [1,0] select (_tourn == 0);
-					(_display displayCtrl (_idcs select _i)) ctrlSetTextColor [0, 0, 0.8, _opacity];
-				};
-			};
-		}, 0, [_display,[-1,-1,-1,-1,-1,-1]]] call CBA_fnc_addPerFrameHandler;
-	} else {
-		{
-			(_display displayCtrl _x) ctrlSetTextColor [0, 0, 0, 0];
-		} forEach [0,0,56,57,58,59];
-	};
 }] call CBA_fnc_addEventhandler;
