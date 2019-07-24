@@ -15,5 +15,5 @@ The stated goal is to increase durations of fire fights without sacrificing firs
  * Soldier accuracy loss from turning increased from 1 to 1.4 coef
 
 ### Source 
-- [Oukej describes AI settings] (https://forums.bohemia.net/forums/topic/150499-ai-discussion-dev-branch/?do=findComment&comment=3367671)
-- [Experiments with AI accuracy by nkenny] (https://forums.bohemia.net/forums/topic/221755-the-effect-of-weapon-on-ai-accuracy/)
+- Oukej describes [AI settings](https://forums.bohemia.net/forums/topic/150499-ai-discussion-dev-branch/?do=findComment&comment=3367671) and variables. 
+- Experiments with [AI accuracy](https://forums.bohemia.net/forums/topic/221755-the-effect-of-weapon-on-ai-accuracy/) by nkenny
