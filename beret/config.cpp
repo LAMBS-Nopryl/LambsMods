@@ -21,16 +21,16 @@ class cfgWeapons {
     class LAMBS_H_Beret_blk : H_Beret_02 {
         author = "nopryl.no";
         displayName = "Beret [LAMBS Black]";
-        hiddenSelectionsTextures[] = {"\beret\data\texture\lambs_beret_black.paa"};
+        hiddenSelectionsTextures[] = {"\beret\data\texture\lambs_beret_blk_co.paa"};
     };
     class LAMBS_H_Beret_grn : LAMBS_H_Beret_blk {
         author = "nopryl.no";
         displayName = "Beret [LAMBS Green]";
-        hiddenSelectionsTextures[] = {"\beret\data\texture\lambs_beret_green.paa"};
+        hiddenSelectionsTextures[] = {"\beret\data\texture\lambs_beret_grn_co.paa"};
     };
     class LAMBS_H_Beret_blu : LAMBS_H_Beret_blk {
         author = "nopryl.no";
         displayName = "Beret [LAMBS Blue]";
-        hiddenSelectionsTextures[] = {"\beret\data\texture\lambs_beret_blue.paa"};
+        hiddenSelectionsTextures[] = {"\beret\data\texture\lambs_beret_blu_co.paa"};
     };    
 };
