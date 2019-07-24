@@ -1,4 +1,4 @@
-# Lambs Medical
+# LAMBS Medical
 ## Description
 Lambs medical is a mod that latches on top ACE advanced medical and changes some item stats and behavior of it.
 Most notable are the changes to the medical menu.
