@@ -1,4 +1,3 @@
-
 class CfgPatches
 {
 	class lambs_effects {
@@ -11,15 +10,17 @@ class CfgPatches
 		"A3_Data_F_ParticleEffects",
 		"CBA_Extended_EventHandlers"
 	};
-	version = "1.0"; 
-	versionStr = "1.0";
+	version = "1.1"; 
+	versionStr = "1.1";
 	author = "nopryl.no";
 	authorUrl = "http://www.nopryl.no";
 	};
 }; 
 #include "cfgSounds.hpp"
 #include "cfgFunctions.hpp"
-#include "cfgBlood.hpp"
+#include "cfgCloudlets.hpp"
+#include "cfgLights.hpp"
+#include "cfgImpacts.hpp"
 
 class Extended_Killed_Eventhandlers {
 	class CAManBase {

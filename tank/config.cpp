@@ -11,8 +11,8 @@ class CfgPatches
     requiredAddons[] = {
         "A3_armor_F_EPB"
     };
-    version = "1.0"; 
-    versionStr = "1.0";
+    version = "1.2"; 
+    versionStr = "1.2";
     author = "nopryl.no";
     authorUrl = "http://www.nopryl.no";
   };
@@ -25,9 +25,9 @@ class cfgVehicles {
         side = 1;
         crew = "B_crew_F";
         hiddenSelectionsTextures[] = {
-            "\tank\data\texture\mbt0.paa",
-            "\tank\data\texture\mbt1.paa",
-            "\tank\data\texture\mbt2.paa",
+            "\tank\data\mbt\mbt0.paa",
+            "\tank\data\mbt\mbt1.paa",
+            "\tank\data\mbt\mbt2.paa",
             "A3\Armor_F\Data\camonet_AAF_Digi_Green_CO.paa"
         };
         class TextureSources {
@@ -36,21 +36,21 @@ class cfgVehicles {
                 displayName = "Olive Drab";
                 factions[] = {"IND_F"}; //BLU_F
                 textures[] = {
-                        "\tank\data\texture\mbt0.paa",
-                        "\tank\data\texture\mbt1.paa",
-                        "\tank\data\texture\mbt2.paa",
+                        "\tank\data\mbt\mbt0.paa",
+                        "\tank\data\mbt\mbt1.paa",
+                        "\tank\data\mbt\mbt2.paa",
                         "A3\Armor_F\Data\camonet_AAF_Digi_Green_CO.paa"
                 };
             };
             class noprylJungle {
                 author = "nopryl.no";
-                displayName = "Olive Drab (Jungle)";
+                displayName = "Olive Drab (Forest)";
                 factions[] = {"IND_F"};
                 textures[] = {
-                        "\tank\data\texture\mbt0.paa",
-                        "\tank\data\texture\mbt1.paa",
-                        "\tank\data\texture\mbt2.paa",
-                        "A3\Armor_F\Data\camonet_AAF_Digi_Jungle_CO.paa"
+                        "\tank\data\mbt\mbt0.paa",
+                        "\tank\data\mbt\mbt1.paa",
+                        "\tank\data\mbt\mbt2.paa",
+                        "A3\Armor_F\Data\camonet_NATO_Green_CO.paa"
                 };
             };
             class noprylDesert {
@@ -58,12 +58,23 @@ class cfgVehicles {
                 displayName = "Olive Drab (Desert)";
                 factions[] = {"IND_F"};
                 textures[] = {
-                        "\tank\data\texture\mbt_desert0.paa",
-                        "\tank\data\texture\mbt_desert1.paa",
-                        "\tank\data\texture\mbt_desert2.paa",
-                        "A3\Armor_F\Data\camonet_AAF_Digi_Desert_CO.paa"
+                        "\tank\data\mbt\mbt_desert0.paa",
+                        "\tank\data\mbt\mbt_desert1.paa",
+                        "\tank\data\mbt\mbt_desert2.paa",
+                        "A3\Armor_F\Data\camonet_NATO_Desert_CO.paa"
                 };
             };
+            class noprylSnow {
+                author = "nopryl.no";
+                displayName = "Olive Drab (Snow)";
+                factions[] = {"IND_F"}; //BLU_F
+                textures[] = {
+                        "\tank\data\mbt\mbt_snow0.paa",
+                        "\tank\data\mbt\mbt_snow1.paa",
+                        "\tank\data\mbt\mbt2.paa",
+                        "\tank\data\camo\camonet_snow_CO.paa"
+                };
+            };        
         };
     };
 
@@ -73,8 +84,8 @@ class cfgVehicles {
         author = "nopryl.no";
         crew = "B_crew_F";
         hiddenSelectionsTextures[] = {
-            "\tank\data\texture\apc0.paa",
-            "\tank\data\texture\apc1.paa",
+            "\tank\data\apc\apc0.paa",
+            "\tank\data\apc\apc1.paa",
             "A3\Armor_F\Data\camonet_AAF_Digi_Green_CO.paa",
             "A3\armor_f\data\cage_aaf_co.paa"
         };
@@ -84,23 +95,46 @@ class cfgVehicles {
                 displayName = "Olive Drab";
                 factions[] = {"IND_F"};
                 textures[] = {
-                        "\tank\data\texture\apc0.paa",
-                        "\tank\data\texture\apc1.paa",
+                        "\tank\data\apc\apc0.paa",
+                        "\tank\data\apc\apc1.paa",
                         "A3\Armor_F\Data\camonet_AAF_Digi_Green_CO.paa",
                         "A3\armor_f\data\cage_aaf_co.paa"
                 };
             }; 
+            class noprylJungle {
+                author = "nopryl.no";
+                displayName = "Olive Drab (Forest)";
+                factions[] = {"IND_F"};
+                textures[] = {
+                        "\tank\data\apc\apc0.paa",
+                        "\tank\data\apc\apc1.paa",
+                        "A3\Armor_F\Data\camonet_NATO_Green_CO.paa",
+                        "A3\armor_f\data\cage_aaf_co.paa"
+                };
+            };             
             class noprylDesert {
                 author = "nopryl.no";
                 displayName = "Olive Drab (Desert)";
                 factions[] = {"IND_F"};
                 textures[] = {
-                        "\tank\data\texture\apc_desert0.paa",
-                        "\tank\data\texture\apc_desert1.paa",
-                        "A3\Armor_F\Data\camonet_AAF_Digi_Desert_CO.paa",
+                        "\tank\data\apc\apc_desert0.paa",
+                        "\tank\data\apc\apc_desert1.paa",
+                        "A3\Armor_F\Data\camonet_NATO_Desert_CO.paa",
                         "A3\armor_f\data\cage_aaf_co.paa"
                 };
             };         
+            class noprylSnow {
+                author = "nopryl.no";
+                displayName = "Olive Drab (Snow)";
+                factions[] = {"IND_F"};
+                textures[] = {
+                        "\tank\data\apc\apc0.paa",
+                        "\tank\data\apc\apc1.paa",
+                        "\tank\data\camo\camonet_snow_CO.paa",
+                        "A3\armor_f\data\cage_aaf_co.paa"
+                };
+            };         
+        
         }; 
     };
 };

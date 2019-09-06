@@ -76,6 +76,13 @@ class CfgUnitInsignia {
 		texture = "\insignia\data\lambs_medic.paa";
 		textureVehicle = ""; 
 	};
+	
+	class lambs_JTAC {
+		displayName = "LAMBS JTAC Patch";
+		author = "nkenny"; 
+		texture = "\insignia\data\lambs_jtac.paa";
+		textureVehicle = ""; 
+	};
 
 	class lambs_empty {
 		displayName = "LAMBS Empty";
@@ -87,7 +94,7 @@ class CfgUnitInsignia {
 	class lambs_flock {
 		displayName = "LAMBS Flock"; 
 		author = "nkenny"; 
-		texture = "\insignia\data\flock.paa";
+		texture = "\insignia\data\lambs_flock.paa";
 		textureVehicle = ""; 
 	};	
 };

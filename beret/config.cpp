@@ -3,7 +3,11 @@ class CfgPatches
   class lambs_beret
   {
     units[] = {};
-    weapons[] = {};
+    weapons[] = {
+        "LAMBS_H_Beret_blk",
+        "LAMBS_H_Beret_grn",
+        "LAMBS_H_Beret_blu"
+    };
     requiredVersion = 1.82;
     requiredAddons[] = {
         "A3_Characters_F_EPB"

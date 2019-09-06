@@ -1,21 +1,9 @@
 
 // init 
-params ["_unit","_killer","_crash"];
-private _time = time;
+params ["_unit","_killer"];
 
-// headshot ---------------------------------------------
-if (_unit getHit "Head" > 0.95) then {
-        //private _blood = (selectRandom lambs_unit_sfx_blood) createVehicleLocal getpos _unit;
-        _blood = "#particlesource" createVehicleLocal getpos _unit;
-        _blood setParticleClass "BloodHeadshot";
-        _blood attachTo [_unit, [0,0,0.1],"head"];
-        //_blood setVectorDirAndUp [[random 1,random 1,-1],(vectorDir player) vectorFromTo (vectorDir _unit)];
-        sleep (0.15 + random 0.2);
-        deleteVehicle _blood; 
-    }; 
-
-// body drop --------------------------------------------
-if (player distance2d _unit > 50) exitWith {};
+// body drop 
+if (!isNull objectParent _unit || {player distance2d _unit > 50} || {(ASLToATL (eyePos _unit) select 0) < 0.6}) exitWith {};
 /*
 // crash 
 if (isNull _crash && {!isNull objectParent _killer}) exitWith {
@@ -26,6 +14,7 @@ if (isNull _crash && {!isNull objectParent _killer}) exitWith {
 */
 // surface
 private _surfaceType = surfaceType (getPosATL _unit);
+private _time = time;
 
 // effect 
 _obj = "Land_HelipadEmpty_F" createVehicleLocal [0,0,0];
@@ -47,7 +36,7 @@ _sound = switch (_surfaceType) do {
 
 // let the body hit the floor 
 waitUntil {(ASLToATL(eyePos _unit) select 2) < 0.8 || {time > (_time + 2.5)}};
-_obj say _sound;
+_obj say3d _sound;
 
 // let the sound play! 
 waitUntil {time > (_time + 4.5)};
