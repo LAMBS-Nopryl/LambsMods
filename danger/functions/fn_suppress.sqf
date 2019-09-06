@@ -17,7 +17,7 @@ _tpos = ATLtoASL ((_unit getHideFrom _target) vectorAdd [0,0,random 1.2]);
 _unit doSuppressiveFire _tPos;
 
 // debug
-if (lambs_danger_debug_functions) then {systemchat format ["Danger.fsm Suppression (%1 %2s)",name _unit,round ((_unit getVariable "isSuppressing") - time)]; }; 
+if (lambs_danger_debug_functions) then {systemchat format ["Danger.fsm Suppression (%1 %2s)",name _unit,round ((_unit getVariable "lastAction") - time)]; }; 
 
 // end 
 true 

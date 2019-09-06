@@ -12,7 +12,7 @@ if !(_target isKindOf "Man") exitWith {false};
 if (speed vehicle _unit > 15) exitWith {false};
 
 // settings 
-vehicle _unit setVariable ["lastAction",time + 10 + random 16];
+vehicle _unit setVariable ["lastAction",time + 11 + random 20];
 private _veh = vehicle _unit; 
 private _indoor = !(lineIntersects [eyepos _target,(eyePos _target) vectorAdd [0,0,4]]); 
 
@@ -21,10 +21,10 @@ sleep (2 + random 3);
 if (!canFire _veh) exitWith {false};
 
 // find 
-private _buildings = [(_unit getHideFrom _target),5,true,_indoor] call lambs_danger_fnc_nearBuildings;
+private _buildings = [(_unit getHideFrom _target),7,_indoor,_indoor] call lambs_danger_fnc_nearBuildings;
 
 // not indoor -- get positions of buildings 
-//if (!_indoor) then {_buildings = _buildings apply {position _x;};};
+if (!_indoor) then {_buildings = _buildings apply {position _x;};};
 
 // add predicted location -- just to ensure shots fired! 
 _buildings pushBack (_unit getHideFrom _target);
@@ -36,7 +36,7 @@ private _pos = AGLToASL ((selectRandom _buildings) vectorAdd [0.5 - random 1,0.5
 [_unit,_pos] spawn lambs_danger_fnc_rotateVehicle; 
 
 // shoot 
-gunner _unit doSuppressiveFire ATLtoASL _pos;
+_unit doSuppressiveFire _pos;
 
 // shoot cannon
 _cannon = random 1 > 0.2; 

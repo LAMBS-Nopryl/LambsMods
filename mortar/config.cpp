@@ -1,7 +1,13 @@
 class CfgPatches {
   class lambs_mortar {
-    units[] = {};
-    weapons[] = {};
+    units[] = {
+		"LAMBS_Mortar_01_F",
+		"LAMBS_Mortar_01_weapon_F",
+		"LAMBS_Mortar_01_support_F"
+	};
+    weapons[] = {
+		"LAMBS_mortar_82mm"
+	};
     requiredVersion = 1.82;
     requiredAddons[] = {
 		"A3_Weapons_F_Exp",
@@ -33,7 +39,7 @@ class CfgVehicles {
 		class Turrets : Turrets {
 			class MainTurret : MainTurret {
 				weapons[] = {"LAMBS_mortar_82mm"};
-				magazines[] = {"lambs_8Rnd_82mm_Mo_shells","lambs_8Rnd_82mm_Mo_shells","lambs_8Rnd_82mm_Mo_shells","lambs_8Rnd_82mm_Mo_shells","lambs_8Rnd_82mm_Mo_shells","8Rnd_82mm_Mo_Smoke_white"};
+				magazines[] = {"LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells","8Rnd_82mm_Mo_Smoke_white"};
 			}; 
 		}; 
 	}; 
@@ -60,7 +66,7 @@ class CfgVehicles {
 class CfgWeapons {
 	class CannonCore; 
 	class mortar_82mm : CannonCore {
-		magazines[] += {"lambs_8Rnd_82mm_Mo_shells"};
+		magazines[] += {"LAMBS_8Rnd_82mm_Mo_shells"};
 	};
 	class LAMBS_mortar_82mm: mortar_82mm {
     	aiDispersionCoefX = 75;
@@ -70,7 +76,7 @@ class CfgWeapons {
 
 class CfgAmmo {
 	class Sh_82mm_AMOS;
-	class lambs_82mm_AMOS: Sh_82mm_AMOS {
+	class LAMBS_82mm_AMOS: Sh_82mm_AMOS {
 		hit = 50;
 		indirectHit = 0.4;
 		IndirectHitRange = 20;
@@ -79,8 +85,9 @@ class CfgAmmo {
 
 class CfgMagazines {
 	class 8Rnd_82mm_Mo_shells;
-	class lambs_8Rnd_82mm_Mo_shells: 8Rnd_82mm_Mo_shells {
-		ammo = "lambs_82mm_AMOS";
+	class LAMBS_8Rnd_82mm_Mo_shells: 8Rnd_82mm_Mo_shells {
+		author = "nopryl.no";
+		ammo = "LAMBS_82mm_AMOS";
 		displayName = "HE Mortar Shells (LAMBS)";
 		displayNameMFDFormat = "HE (LAMBS)";
 		displayNameShort = "HE (LAMBS)";

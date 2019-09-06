@@ -27,13 +27,13 @@ if (speed vehicle _unit > 10) exitWith {false};
 if (!alive _target && {random 1 > 0.8}) exitWith {false}; 
 
 // settings 
-vehicle _unit setVariable ["lastAction",time + 8 + random 16];
+vehicle _unit setVariable ["lastAction",time + 9 + random 16];
 
 // find 
 _tpos = (ATLtoASL (_unit getHideFrom _target)) vectorAdd [0.5 - random 1,0.5 - random 1,random 1.3];
 
 // do it
-gunner _unit doSuppressiveFire _tPos;
+_unit doSuppressiveFire _tPos;
 
 // debug
 if (lambs_danger_debug_functions) then {systemchat format ["Danger.fsm vehicle suppression (%1s)",round (time - (vehicle _unit getVariable ["lastAction",0]))];}; 
