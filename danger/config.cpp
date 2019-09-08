@@ -28,4 +28,7 @@ class CfgVehicles {
     class SoldierGB: CAManBase {
         fsmDanger = "danger\scripts\lambs_danger.fsm";
     };
+    class Civilian_F : CAManBase {
+        fsmDanger = "danger\scripts\lambs_dangerCivilian.fsm";
+    }; 
 };

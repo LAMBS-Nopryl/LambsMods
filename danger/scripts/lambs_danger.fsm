@@ -8,7 +8,7 @@ item3[] = {"End",1,250,275.582397,650.223755,365.582397,700.223755,0.000000,"End
 item4[] = {"Causes__3_ENEMY",4,218,-829.055786,-50.944244,-719.055786,19.055756,2.000000,"Causes:" \n "3" \n "ENEMY NEAR"};
 item5[] = {"Rest",8,218,-564.989014,530.385193,-474.989197,580.385193,0.000000,"Rest"};
 item6[] = {"Timeout",4,218,-1071.476807,218.510910,-981.477051,268.510925,0.000000,"Timeout"};
-item7[] = {"Reacting_on_danger",0,4346,-515.758057,-603.076050,-375.758087,-553.076111,0.000000,"Reacting on danger!"};
+item7[] = {"Reacting_on_danger",0,250,-515.758057,-603.076050,-375.758087,-553.076111,0.000000,"Reacting on danger!"};
 item8[] = {"Seek_cover___Com",2,250,-820.000000,100.000000,-730.000000,150.000000,0.000000,"Seek cover" \n "+ Communicate"};
 item9[] = {"Causes__5__6_SPOTTED",4,218,-960.000000,-50.000000,-850.000000,20.000000,1.000000,"Causes:" \n "5, 6" \n "SPOTTED BODY"};
 item10[] = {"Check_dead__bodies",2,250,-950.000000,100.000000,-860.000000,150.000000,0.000000,"Check dead " \n "bodies!" \n ""};
@@ -20,8 +20,8 @@ item15[] = {"Causes__4_EXPLOSION",4,218,-426.824097,-51.676514,-316.824097,18.32
 item16[] = {"Check_Panic",2,250,-416.824097,98.323486,-326.824097,148.323486,0.000000,"Check Panic"};
 item17[] = {"Cause_0_ENEMY_DE",4,218,-274.413330,-57.279205,-154.413330,12.720795,3.000000,"Cause 0" \n "ENEMY DETECTED"};
 item18[] = {"Gesture___Commun",2,250,-275.053711,97.802673,-155.053711,147.802673,0.000000,"Gesture" \n "+ Communicate"};
-item19[] = {"Cause__8_CAN_FIRE_1",4,218,-1233.051636,-52.719620,-1090.094849,34.543472,1.000000,"Cause:" \n "8" \n "CAN FIRE" \n "(Infantry)"};
-item20[] = {"Stop_to_fire__Su",2,250,-1206.479980,95.479095,-1116.479980,145.479095,0.000000,"Stop to fire" \n "+Suppression"};
+item19[] = {"Cause__8_CAN_FIRE",4,218,-1233.051636,-52.719620,-1090.094849,34.543472,2.000000,"Cause:" \n "8" \n "CAN FIRE" \n "(Infantry)"};
+item20[] = {"Stop_to_fire__Su",2,4346,-1206.479980,95.479095,-1116.479980,145.479095,0.000000,"Stop to fire" \n "+Suppression"};
 item21[] = {"Check_queue__and",2,250,88.421204,493.995087,178.421204,543.995056,0.000000,"Check queue " \n "and " \n "clean-up"};
 item22[] = {"Next__cause",4,218,89.520081,-37.191772,179.520081,12.808228,1.000000,"Next  cause"};
 item23[] = {"Always",8,218,88.569214,648.158142,178.569214,698.158142,0.000000,"Always"};
@@ -48,9 +48,9 @@ item43[] = {"Seek_Cover",2,250,-146.704163,392.923889,-56.704132,442.923889,0.00
 item44[] = {"None",2,250,-13.915344,432.980743,76.084656,482.980743,0.000000,"None"};
 item45[] = {"Enemy_near___Veh",4,218,-258.293579,179.098221,-168.293579,229.098236,3.000000,"" \n "Enemy near: " \n "Vehicle"};
 item46[] = {"Recon_by_fire_",2,250,-255.826660,339.741241,-165.826645,389.741241,0.000000,"Recon by fire!"};
-item47[] = {"Cause__8_CAN_FIRE",4,218,-1388.879883,-53.458008,-1245.923096,33.805084,1.000000,"Cause:" \n "8" \n "CAN FIRE" \n "(Vehicle)"};
-item48[] = {"Begin",8,218,-513.168274,-446.017792,-377.844727,-379.241821,0.000000,"Begin"};
-item49[] = {"Ready",2,250,-719.926270,-348.520142,-172.006104,-281.615173,0.000000,"Ready"};
+item47[] = {"Begin",8,218,-513.168274,-446.017792,-377.844727,-379.241821,0.000000,"Begin"};
+item48[] = {"Ready",2,250,-719.926270,-348.520142,-172.006104,-281.615173,0.000000,"Ready"};
+item49[] = {"Cause__VIII_CAN",4,218,-1397.830688,-58.409760,-1249.097900,36.863373,2.000000,"Cause:" \n "VIII" \n "CAN FIRE" \n "(Vehicle)"};
 version=1;
 class LayoutItems
 {
@@ -70,70 +70,69 @@ link2[] = {4,8};
 link3[] = {5,21};
 link4[] = {6,25};
 link5[] = {7,0};
-link6[] = {7,31};
-link7[] = {7,48};
-link8[] = {8,5};
-link9[] = {9,10};
-link10[] = {10,5};
-link11[] = {11,12};
-link12[] = {12,5};
-link13[] = {13,14};
-link14[] = {14,5};
-link15[] = {15,16};
-link16[] = {16,5};
-link17[] = {17,18};
-link18[] = {18,39};
-link19[] = {18,40};
-link20[] = {18,41};
-link21[] = {18,45};
-link22[] = {19,20};
-link23[] = {20,2};
-link24[] = {20,6};
-link25[] = {20,26};
-link26[] = {21,22};
-link27[] = {21,23};
-link28[] = {22,49};
-link29[] = {23,3};
-link30[] = {24,5};
-link31[] = {24,26};
-link32[] = {25,5};
-link33[] = {26,27};
-link34[] = {27,36};
-link35[] = {27,37};
-link36[] = {28,29};
-link37[] = {28,34};
-link38[] = {29,33};
-link39[] = {30,32};
-link40[] = {31,3};
-link41[] = {32,5};
-link42[] = {33,5};
-link43[] = {34,35};
-link44[] = {35,5};
-link45[] = {36,27};
-link46[] = {37,38};
-link47[] = {38,5};
-link48[] = {39,42};
-link49[] = {40,43};
-link50[] = {41,44};
-link51[] = {42,5};
-link52[] = {43,5};
-link53[] = {44,5};
-link54[] = {45,46};
-link55[] = {46,5};
-link56[] = {47,28};
-link57[] = {48,49};
-link58[] = {49,4};
-link59[] = {49,5};
-link60[] = {49,9};
-link61[] = {49,11};
-link62[] = {49,13};
-link63[] = {49,15};
-link64[] = {49,17};
-link65[] = {49,19};
-link66[] = {49,30};
-link67[] = {49,47};
-globals[] = {0.000000,0,0,0,0,640,480,1,280,6316128,1,-1847.177979,757.185913,1056.860962,-980.535400,1130,884,1};
-window[] = {2,-1,-1,-32000,-32000,1047,234,1568,234,3,1148};
+link6[] = {7,47};
+link7[] = {8,5};
+link8[] = {9,10};
+link9[] = {10,5};
+link10[] = {11,12};
+link11[] = {12,5};
+link12[] = {13,14};
+link13[] = {14,5};
+link14[] = {15,16};
+link15[] = {16,5};
+link16[] = {17,18};
+link17[] = {18,39};
+link18[] = {18,40};
+link19[] = {18,41};
+link20[] = {18,45};
+link21[] = {19,20};
+link22[] = {20,2};
+link23[] = {20,6};
+link24[] = {20,26};
+link25[] = {21,22};
+link26[] = {21,23};
+link27[] = {22,48};
+link28[] = {23,3};
+link29[] = {24,5};
+link30[] = {25,5};
+link31[] = {26,27};
+link32[] = {27,36};
+link33[] = {27,37};
+link34[] = {28,29};
+link35[] = {28,34};
+link36[] = {29,33};
+link37[] = {30,32};
+link38[] = {31,3};
+link39[] = {32,5};
+link40[] = {33,5};
+link41[] = {34,35};
+link42[] = {35,5};
+link43[] = {36,27};
+link44[] = {37,38};
+link45[] = {38,5};
+link46[] = {39,42};
+link47[] = {40,43};
+link48[] = {41,44};
+link49[] = {42,5};
+link50[] = {43,5};
+link51[] = {44,5};
+link52[] = {45,46};
+link53[] = {46,5};
+link54[] = {47,48};
+link55[] = {48,4};
+link56[] = {48,5};
+link57[] = {48,9};
+link58[] = {48,11};
+link59[] = {48,13};
+link60[] = {48,15};
+link61[] = {48,17};
+link62[] = {48,19};
+link63[] = {48,30};
+link64[] = {48,31};
+link65[] = {48,49};
+link66[] = {49,28};
+globals[] = {0.000000,0,0,0,0,640,480,1,283,6316128,1,-2116.739258,930.649170,1530.632080,-853.342773,1130,884,1};
+window[] = {2,-1,-1,-32000,-32000,839,26,1360,26,3,1148};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -181,17 +180,6 @@ class FSM
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
-                                /*%FSM<LINK "Unconscious_">*/
-                                class Unconscious_
-                                {
-                                        itemno = 31;
-                                        priority = 12.000000;
-                                        to="End";
-                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"(_this getVariable [""ACE_isUnconscious"",false]) || {(_this getVariable [""isPanicked"",false])} || {fleeing _this}"/*%FSM</CONDITION""">*/;
-                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
-                                };
-                                /*%FSM</LINK>*/
                                 /*%FSM<LINK "Player_or__not_l">*/
                                 class Player_or__not_l
                                 {
@@ -206,7 +194,7 @@ class FSM
                                 /*%FSM<LINK "Begin">*/
                                 class Begin
                                 {
-                                        itemno = 48;
+                                        itemno = 47;
                                         priority = 0.000000;
                                         to="Ready";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -236,6 +224,14 @@ class FSM
                          "	if (_gesture_time < time && {count units group _this > 1}) then {" \n
                          "		[_this,_dangerCausedBy] call lambs_danger_fnc_shareInformation;  " \n
                          "	}; " \n
+                         "}; " \n
+                         "" \n
+                         "" \n
+                         "// Enemy tank? Turn vehicle " \n
+                         "if ((vehicle _this) isKindOf ""Tank"" && {speed _this < 12} && {((vehicle _dangerCausedBy) isKindOf ""Tank"")} && {_action_time < time}) then {" \n
+                         "" \n
+                         "	[_this,getposASL _dangerCausedBy] call lambs_danger_fnc_rotateVehicle; " \n
+                         "" \n
                          "}; " \n
                          "" \n
                          "// end " \n
@@ -484,10 +480,10 @@ class FSM
                          "_this lookAt _dangerPos;" \n
                          "" \n
                          "// delay " \n
-                         "_stopUntil = time + 4 + random 4;" \n
+                         "_stopUntil = time + 4 + random 6;" \n
                          "" \n
                          "// soldier stop" \n
-                         "if (_onFoot) then {_this forceSpeed selectRandom [0,0,3]};" \n
+                         "_this forceSpeed selectRandom [0,0,3];" \n
                          "" \n
                          "// Check suppression " \n
                          "if (unitReady _this && {_action_time < time} && {_this knowsAbout _dangerCausedBy > 3} && {_this distance _dangerCausedBy > 20}) then {" \n
@@ -593,24 +589,13 @@ class FSM
                          "if (lambs_danger_debug_FSM) then {systemchat ""Danger.fsm KILLED TARGET"";};" \n
                          "" \n
                          "// continue moving" \n
-                         "if (_onFoot) then {_this forceSpeed -1;};" \n
+                         "_this forceSpeed -1;" \n
                          "" \n
                          "// end " \n
                          "true "/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
-                                /*%FSM<LINK "Close_Combat">*/
-                                class Close_Combat
-                                {
-                                        itemno = 26;
-                                        priority = 1.000000;
-                                        to="CQC____Assault_";
-                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"_this distance _dangerPos < lambs_danger_CQB_range"/*%FSM</CONDITION""">*/;
-                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
-                                };
-                                /*%FSM</LINK>*/
                                 /*%FSM<LINK "Rest">*/
                                 class Rest
                                 {
@@ -634,7 +619,7 @@ class FSM
                          "if (lambs_danger_debug_FSM) then {systemchat ""Danger.fsm TIMEOUT"";};" \n
                          "" \n
                          "// continue moving" \n
-                         "if (_onFoot) then {_this forceSpeed -1;};" \n
+                         "_this forceSpeed -1;" \n
                          "" \n
                          "// end " \n
                          "true "/*%FSM</STATEINIT""">*/;
@@ -670,8 +655,10 @@ class FSM
                          "if (!alive _dangerCausedBy) then {_dangerCausedBy = _this findNearestEnemy _this;}; " \n
                          "" \n
                          "// CQB mode " \n
-                         "if ((formation group _this) in lambs_danger_CQB_formations) then {" \n
-                         "[_this,_dangerCausedBy,45] call lambs_danger_fnc_assaultBuilding; " \n
+                         "if ((formation group _this) in lambs_danger_CQB_formations && {formationleader _this isEqualTo _this}) then {" \n
+                         "" \n
+                         "	[_this,_dangerCausedBy,45] call lambs_danger_fnc_assaultBuilding; " \n
+                         "" \n
                          "}; " \n
                          "" \n
                          "// indoor " \n
@@ -701,7 +688,7 @@ class FSM
                                         priority = 2.000000;
                                         to="CQC____Assault_";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"unitReady _this && {count (group _this getVariable [""isCQB"",[]]) > 0} && {!alive _dangerCausedBy}"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"unitReady _this && {count (group _this getVariable [""isCQB"",[]]) > 0}"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -908,6 +895,13 @@ class FSM
                         itemno = 42;
                         init = /*%FSM<STATEINIT""">*/"//systemchat ""Danger.fsm CHECK BUILDINGS"";" \n
                          "" \n
+                         "// CQB mode " \n
+                         "if ((formation group _this) in lambs_danger_CQB_formations && {formationleader _this isEqualTo _this}) then {" \n
+                         "" \n
+                         "	[_this,_dangerCausedBy,45] call lambs_danger_fnc_assaultBuilding; " \n
+                         "" \n
+                         "}; " \n
+                         "" \n
                          "// Check buildings near enemy" \n
                          "[_this,_dangerCausedBy,13] call lambs_danger_fnc_assault;" \n
                          "" \n
@@ -1029,11 +1023,12 @@ class FSM
                 class Ready
                 {
                         name = "Ready";
-                        itemno = 49;
+                        itemno = 48;
                         init = /*%FSM<STATEINIT""">*/"// DEBUG BEGIN! " \n
+                         "private [""_dangerCause""];" \n
                          "" \n
                          "// Retrieve the highest priority event from the _queue" \n
-                         "private _priors = [3,4,5,1,4,1,1,2,4,1];" \n
+                         "private _priors = [3,4,5,1,4,1,1,2,2,1];  // changed 8 (ready to fire) from priorty 4 to 2! (as in A2) " \n
                          "private _priorCur = [-1, _priors select _dangerCause] select (_dangerCause > 0);" \n
                          "" \n
                          "{" \n
@@ -1060,6 +1055,17 @@ class FSM
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
+                                /*%FSM<LINK "Unconscious_">*/
+                                class Unconscious_
+                                {
+                                        itemno = 31;
+                                        priority = 12.000000;
+                                        to="End";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"(_this getVariable [""ACE_isUnconscious"",false]) || {(_this getVariable [""isPanicked"",false])} || {fleeing _this}"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
                                 /*%FSM<LINK "Causes__2_HIT">*/
                                 class Causes__2_HIT
                                 {
@@ -1118,22 +1124,22 @@ class FSM
                                 /*%FSM<LINK "Cause__8_CAN_FIRE">*/
                                 class Cause__8_CAN_FIRE
                                 {
-                                        itemno = 47;
-                                        priority = 1.000000;
-                                        to="Set_up_fire__Suppression";
-                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"_dangerCause isEqualTo 8 && {!_onFoot}"/*%FSM</CONDITION""">*/;
-                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
-                                };
-                                /*%FSM</LINK>*/
-                                /*%FSM<LINK "Cause__8_CAN_FIRE_1">*/
-                                class Cause__8_CAN_FIRE_1
-                                {
                                         itemno = 19;
-                                        priority = 1.000000;
+                                        priority = 2.000000;
                                         to="Stop_to_fire__Su";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
                                         condition=/*%FSM<CONDITION""">*/"_dangerCause isEqualTo 8 && {_onFoot}"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Cause__VIII_CAN">*/
+                                class Cause__VIII_CAN
+                                {
+                                        itemno = 49;
+                                        priority = 2.000000;
+                                        to="Set_up_fire__Suppression";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_dangerCause isEqualTo 8 && {!_onFoot}"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/

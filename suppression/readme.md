@@ -6,7 +6,7 @@ The overall goal is to increase durations of fire fights without sacrificing fir
 ### Changes
  * Soldier suppression time increased
     * Max skilled ai increased from 1 to 4 seconds
-    * Min skilled ai increased from 10 to 25 seconds 
+    * Min skilled ai increased from 10 to 30 seconds 
     * Effect of explosives on suppression increased from 0.5 to 1.5 
  * Soldier core accuracy levels tweaked
     * Max skilled ai regains accuracy increased from 0.2 to 0.6 seconds 

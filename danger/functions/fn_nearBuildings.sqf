@@ -1,9 +1,9 @@
 // find nearby buildings 
-// version 1.0
+// version 1.1
 // by nkenny 
 
 // init 
-private _unit = param [0,ObjNull]; // pos 
+private _unit = param [0]; // pos 
 private _range = param [1,100]; // range
 private _housePos = param [2,false]; // return house positions
 private _indoor = param [3,false]; // return only indoor positions 

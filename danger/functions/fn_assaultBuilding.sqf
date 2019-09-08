@@ -1,12 +1,11 @@
 // Unit leader declares building assault position! 
-// version 1.1
+// version 1.2
 // by nkenny 
 
 // init 
 private _unit = param [0]; 
 private _target = param [1];
 private _range = param [2,25]; 
-
 
 // already in CQB? exit 
 private _CQB = group _unit getVariable ["isCQB",[]]; 

@@ -27,7 +27,7 @@ if (count _body > 0 && {!(selectRandom _body getVariable ["isChecked",false])}) 
 		params ["_unit","_body","_bodyPos"];
 		_bodyPos = getPosATL _body; 
 		_unit doMove _bodyPos; 
-		waitUntil {(_unit distance _bodyPos < 2.5) || {_unit getVariable ["lastAction",0] < time} || {!alive _unit}}; 
+		waitUntil {(_unit distance _bodyPos < 1.5) || {_unit getVariable ["lastAction",0] < time} || {!alive _unit}}; 
 		if (alive _unit && {!isNil str _body}) then {_unit action ["rearm",_body];}; 
 	};
 

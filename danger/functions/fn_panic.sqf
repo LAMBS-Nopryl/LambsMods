@@ -28,7 +28,7 @@ private _target = param [1];
 private _random = param [2,[0,0,1,1,1,1,2,2,3],[]]; 
 
 // near enemy
-//if (_unit distance _target < 35) exitWith {false};
+if (_unit distance _target < 35) exitWith {false};
 
 // settings 
 _random = selectRandom _random; 

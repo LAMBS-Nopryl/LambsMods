@@ -10,22 +10,35 @@ class CfgPatches {
 	};
     requiredVersion = 1.82;
     requiredAddons[] = {
+		"A3_Static_F_Mortar_01",
 		"A3_Weapons_F_Exp",
-		"A3_Weapons_F",
-		"A3_Static_F_Mortar_01"
+		"A3_Weapons_F"
+		//"A3_Static_F_Mortar_01"
 	};
-    version = "1.0"; 
-    versionStr = "1.0";
+    version = "1.1"; 
+    versionStr = "1.1";
     author = "nopryl.no";
     authorUrl = "http://www.nopryl.no";
   };
 };
 
-class Turrets; 
-class MainTurret; 
 class CfgVehicles {
 	// Mortar 
-	class O_G_Mortar_01_F; 
+	class LandVehicle; 
+	class StaticWeapon: LandVehicle {
+		class Turrets {
+			class MainTurret;
+		};
+	};
+	class StaticMortar: StaticWeapon {
+		class Turrets: Turrets {
+			class MainTurret: MainTurret {
+				class ViewOptics;
+			};
+		};
+	};
+	class Mortar_01_base_F: StaticMortar {};
+	class O_G_Mortar_01_F : Mortar_01_base_F {}; 
 	class LAMBS_Mortar_01_F : O_G_Mortar_01_F {
 		author = "nopryl.no";
 		displayname = "Mk6 Mortar [High Dispersion]";
@@ -39,7 +52,7 @@ class CfgVehicles {
 		class Turrets : Turrets {
 			class MainTurret : MainTurret {
 				weapons[] = {"LAMBS_mortar_82mm"};
-				magazines[] = {"LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells","8Rnd_82mm_Mo_Smoke_white"};
+				magazines[] = {"LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells","LAMBS_8Rnd_82mm_Mo_shells"};
 			}; 
 		}; 
 	}; 
@@ -55,7 +68,7 @@ class CfgVehicles {
 			displayName = "Mk6 Mortar";
 			dissasembleTo[] = {};
 			primary = 1;
-		}; 
+		}; 	
 	}; 
 	class LAMBS_Mortar_01_support_F : I_Mortar_01_support_F {
 		author = "nopryl.no";
@@ -67,7 +80,7 @@ class CfgWeapons {
 	class CannonCore; 
 	class mortar_82mm : CannonCore {
 		magazines[] += {"LAMBS_8Rnd_82mm_Mo_shells"};
-	};
+	};	
 	class LAMBS_mortar_82mm: mortar_82mm {
     	aiDispersionCoefX = 75;
     	aiDispersionCoefY = 75;
