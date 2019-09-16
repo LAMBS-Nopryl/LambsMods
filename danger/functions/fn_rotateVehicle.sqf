@@ -1,5 +1,5 @@
 // Rotate tank to face enemy 
-// version 1.0
+// version 1.2
 // by nkenny 
 
 /*
@@ -8,12 +8,18 @@
 		End script when Tank reasonably turned 
 		Inspiration by the work of alarm9k @ https://forums.bohemia.net/forums/topic/172270-smarter-tanks-script/
 		Also thanks to Natalie. 
+
+	Arguments: 
+		0, vehicle which will do the movement <OBJECT>
+		1, Direction which we wish to end up <SCALAR> 
+		2, acceptable threshold <SCALAR> (Default : 18) 
+
 */
 
 // init
-private _unit = param [0];				// vehicle 
-private _target = param [1,[0,0,0]]; 	// direction we wish to end up at 
-private _threshold = param [2,18]; 		// acceptable threshold 
+private _unit = param [0];			
+private _target = param [1,[0,0,0]];
+private _threshold = param [2,18]; 	
 
 // cannot move or moving  
 if (!canMove _unit || {currentCommand _unit == "MOVE"}) exitWith {true};
@@ -48,8 +54,11 @@ _unit doMove _pos;
 _time = time + (5 + random 8); 
 waitUntil {sleep 0.1;(_unit getRelDir _target < _threshold || {_unit getRelDir _target > (360-_threshold)}) || {time > _time}}; 
 
+// check vehicle 
+if (!canMove _unit || {count crew _unit < 1}) exitWith {false};
+
 // refresh ready (For HC apparently)
-//effectiveCommander _unit doMove getPosASL _unit;
+effectiveCommander _unit doMove getPosASL _unit;
 
 // refresh formation 
 group _unit setFormDir (_unit getDir _target); 

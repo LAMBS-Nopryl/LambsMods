@@ -1,4 +1,4 @@
-// Unit leader declares building assault position! 
+// Unit leader declares and finds valid building assault positions! 
 // version 1.2
 // by nkenny 
 
@@ -14,14 +14,18 @@ if (count _CQB > 0) exitWith {
 	// too far away? Cancel list 
 	if (_unit distance (_CQB select 0) > 300) then {
 		_CQB = []; 
-		group _unit setVariable ["isCQB",_CQB];  
 	}; 
 
 	// Near enemy! 
 	if (_unit distance _target < lambs_danger_CQB_range && {alive _target}) then {
 		_CQB pushBackUnique getPosATL _target;
-		group _unit setVariable ["isCQB",_CQB];  
 	}; 
+
+	// sort em 
+	_CQB = [_CQB,[],{_unit distance _x},"ASCEND"] call BIS_fnc_sortBy;
+
+	// update variable 
+	group _unit setVariable ["isCQB",_CQB];  	
 }; 
 
 // find buildingPos 
@@ -34,7 +38,7 @@ _buildings = [_buildings,[],{_unit distance _x},"ASCEND"] call BIS_fnc_sortBy;
 group _unit setVariable ["isCQB",_buildings]; 
 
 // debug
-if (lambs_danger_debug_functions) then {systemchat format ["Danger.fsm %1 declared CQB (%2m) (positions : %3)",side _unit,round (_unit distance2d _target),count _buildings];}; 
+if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc %1 declared CQB (%2m) (positions : %3)",side _unit,round (_unit distance2d _target),count _buildings];}; 
  
 // end 
 true 

@@ -13,14 +13,14 @@ item8[] = {"Always",8,218,-318.201965,1112.264404,-218.201965,1172.264404,0.0000
 item9[] = {"Time_up__Safe",4,218,-680.000000,932.602539,-580.000000,992.602539,0.000000,"Time up " \n "Safe"};
 item10[] = {"Drop_down",2,250,-680.304871,826.383789,-580.304871,886.383789,0.000000,"Drop down"};
 item11[] = {"Hide_vs__run",2,250,-540.000000,40.000000,-440.000000,100.000000,0.000000,"Hide vs. run"};
-item12[] = {"Cover",4,4314,-680.025879,709.805481,-580.025879,769.805481,1.000000,"Cover"};
+item12[] = {"Cover",4,218,-680.025879,709.805481,-580.025879,769.805481,1.000000,"Cover"};
 item13[] = {"Always",4,218,-200.000000,1060.000000,-100.000000,1120.000000,0.000000,"Always"};
 item14[] = {"Vehicle",4,218,-920.000000,360.000000,-820.000000,420.000000,1.000000,"Vehicle"};
 item15[] = {"Man",4,218,-700.000000,360.000000,-600.000000,420.000000,0.000000,"Man"};
 item16[] = {"Man",2,250,-680.000000,600.000000,-580.000000,660.000000,0.000000,"Man"};
 item17[] = {"Order_out",2,250,-940.000000,600.000000,-840.000000,660.000000,0.000000,"Order out"};
 item18[] = {"Always",8,218,-800.000000,600.000000,-700.000000,660.000000,0.000000,"Always"};
-item19[] = {"Select_danger",2,250,-820.000000,-160.000000,-720.000000,-100.000000,0.000000,"Select danger"};
+item19[] = {"Select_danger",2,4346,-820.000000,-160.000000,-720.000000,-100.000000,0.000000,"Select danger"};
 item20[] = {"Hide",2,250,-820.000000,240.000000,-720.000000,300.000000,0.000000,"Hide"};
 item21[] = {"Hide",4,218,-700.000000,120.000000,-580.000000,180.000000,0.000000,"Hide"};
 item22[] = {"Run",4,218,-400.000000,120.000000,-280.000000,180.000000,1.000000,"Run"};
@@ -69,7 +69,7 @@ item64[] = {"Max__time",4,218,-360.000000,900.000000,-260.000000,960.000000,1.00
 item65[] = {"Clean_up_3",2,250,-200.000000,980.000000,-100.000000,1040.000000,0.000000,"Clean-up"};
 item66[] = {"Debug",2,250,-100.000000,-60.000000,0.000000,0.000000,0.000000,"Debug"};
 item67[] = {"true",4,218,-100.000000,40.000000,0.000000,100.000000,0.000000,"true"};
-item68[] = {"Panic____Unconsc",4,218,-387.970337,-99.401642,-225.204956,1.534088,3.000000,"Panic!" \n "+ Unconscious"};
+item68[] = {"Panic____Unconsc",4,218,-375.723633,-79.500702,-212.958252,21.435028,3.000000,"Panic!" \n "+ Unconscious"};
 version=1;
 class LayoutItems
 {
@@ -201,8 +201,8 @@ link75[] = {65,13};
 link76[] = {66,67};
 link77[] = {67,2};
 link78[] = {68,66};
-globals[] = {0.000000,0,0,0,0,640,480,1,213,6316128,1,-2861.408447,822.387695,2531.205078,-791.729370,980,884,1};
-window[] = {2,-1,-1,-1,-1,922,104,1268,104,3,998};
+globals[] = {0.000000,0,0,0,0,640,480,1,213,6316128,1,-1705.396973,127.593513,1027.575806,-625.856567,980,884,1};
+window[] = {2,-1,-1,-1,-1,844,26,1190,26,3,998};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -352,6 +352,11 @@ class FSM
                          "// script " \n
                          "if (_lastAction < time) then {" \n
                          "	[_this,_dangerPos] call lambs_danger_fnc_hideInside; " \n
+                         "" \n
+                         "	// animation" \n
+                         "	if (count weapons _this < 1) then { " \n
+                         "		_this playMoveNow selectRandom ['ApanPknlMsprSnonWnonDf','ApanPercMsprSnonWnonDf','ApanPpneMsprSnonWnonDf','ApanPpneMrunSnonWnonDf'];" \n
+                         "	}; " \n
                          "}; " \n
                          "" \n
                          "// end " \n
@@ -390,11 +395,7 @@ class FSM
                         name = "Hide_vs__run";
                         itemno = 11;
                         init = /*%FSM<STATEINIT""">*/"private _random = random 1 > 0.3; " \n
-                         "" \n
-                         "// chance for panic! " \n
-                         "if ((isNull objectParent _this) && {_dangerCause in [2,4]} && {1 > random lambs_danger_panic_chance}) then {" \n
-                         "	[_this,_dangerCausedBy,[1,1,2,4,4,5]] call lambs_danger_fnc_panic; " \n
-                         "}; "/*%FSM</STATEINIT""">*/;
+                         ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -552,7 +553,7 @@ class FSM
                         name = "Hide";
                         itemno = 20;
                         init = /*%FSM<STATEINIT""">*/"// debug " \n
-                         "if lambs_danger_debug_FSM_civ then {systemchat ""dangerCivilian.fsm HIDE"";}; " \n
+                         "if (lambs_danger_debug_FSM_civ) then {systemchat ""dangerCivilian.fsm HIDE"";}; " \n
                          "" \n
                          "// tweak behaviour " \n
                          "_this setBehaviour ""COMBAT"";"/*%FSM</STATEINIT""">*/;
@@ -590,7 +591,7 @@ class FSM
                         name = "Run";
                         itemno = 24;
                         init = /*%FSM<STATEINIT""">*/"// debug " \n
-                         "if lambs_danger_debug_FSM_civ then {systemchat ""dangerCivilian.fsm RUN"";}; " \n
+                         "if (lambs_danger_debug_FSM_civ) then {systemchat ""dangerCivilian.fsm RUN"";}; " \n
                          "" \n
                          "// tweak behaviour" \n
                          "_this setBehaviour ""COMBAT"";"/*%FSM</STATEINIT""">*/;
@@ -643,7 +644,12 @@ class FSM
                          "_pos = getPos _this;" \n
                          "_newPos = _pos getPos [_minDist + random (_maxDist - _minDist),(_dangerPos getDir _this) + 30 - random 60];" \n
                          "_this doMove _newPos;" \n
-                         "(group _this) setSpeedMode ""FULL"";"/*%FSM</STATEINIT""">*/;
+                         "(group _this) setSpeedMode ""FULL"";" \n
+                         "" \n
+                         "// Animation" \n
+                         "if (count weapons _this < 1) then {  " \n
+                         "	_this playMoveNow selectRandom ['ApanPknlMsprSnonWnonDf','ApanPercMsprSnonWnonDf'];" \n
+                         "}; "/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -772,7 +778,7 @@ class FSM
                         name = "Inspect_body";
                         itemno = 40;
                         init = /*%FSM<STATEINIT""">*/"// debug " \n
-                         "if lambs_danger_debug_FSM_civ then {systemchat ""dangerCivilian.fsm INSPECT"";}; " \n
+                         "if (lambs_danger_debug_FSM_civ) then {systemchat ""dangerCivilian.fsm INSPECT"";}; " \n
                          "" \n
                          "// tweak behaviour" \n
                          "_this setBehaviour ""COMBAT"";" \n
@@ -897,7 +903,7 @@ class FSM
                         name = "Clean_up_2";
                         itemno = 49;
                         init = /*%FSM<STATEINIT""">*/"// debug" \n
-                         "if lambs_danger_debug_FSM_civ then {systemchat ""dangerCivilian.fsm CLEAN-UP and RESET"";}; " \n
+                         "if (lambs_danger_debug_FSM_civ) then {systemchat ""dangerCivilian.fsm CLEAN-UP and RESET"";}; " \n
                          "" \n
                          "if (_orderedOut) then {[_this] orderGetIn true};" \n
                          "" \n
@@ -1031,10 +1037,15 @@ class FSM
                         name = "Drop_down_1";
                         itemno = 62;
                         init = /*%FSM<STATEINIT""">*/"if ((random 1) >= 0.3) then {" \n
-                         "	_this setUnitPosWeak ""DOWN"";" \n
+                         "	_this setUnitPosWeak selectRandom [""DOWN"",""DOWN"",""MIDDLE""];" \n
+                         "" \n
+                         "	// Chance to stop + animation " \n
                          "	if ((random 1) >= 0.6) then {" \n
                          "		_this stop true;" \n
-                         "	}" \n
+                         "		if (count weapons _this < 1) then { " \n
+                         "			_this playMoveNow selectRandom ['ApanPpneMsprSnonWnonDf','ApanPpneMrunSnonWnonDf',""ApanPpneMstpSnonWnonDnon_G01"",""ApanPpneMstpSnonWnonDnon_G02"",""ApanPpneMstpSnonWnonDnon_G03""];" \n
+                         "		}; " \n
+                         "	}; " \n
                          "};" \n
                          "" \n
                          "_timeNow = time;"/*%FSM</STATEINIT""">*/;
@@ -1072,7 +1083,7 @@ class FSM
                         name = "Clean_up_3";
                         itemno = 65;
                         init = /*%FSM<STATEINIT""">*/"// debug" \n
-                         "if lambs_danger_debug_FSM_civ then {systemchat ""dangerCivilian.fsm CLEAN-UP and RESET"";}; " \n
+                         "if (lambs_danger_debug_FSM_civ) then {systemchat ""dangerCivilian.fsm CLEAN-UP and RESET"";}; " \n
                          "" \n
                          "" \n
                          "if (_orderedOut) then {[_this] orderGetIn true};" \n

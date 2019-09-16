@@ -6,6 +6,7 @@ class cfgFunctions {
             class assault;
             class assaultBuilding; 
             class assaultVehicle;
+            class callArtillery; 
             class checkBody;
             class coward; 
             class gesture; 

@@ -1,5 +1,5 @@
 // Check Body 
-// version 1.1
+// version 1.2
 // by nkenny 
 
 // init 
@@ -27,7 +27,7 @@ if (count _body > 0 && {!(selectRandom _body getVariable ["isChecked",false])}) 
 		params ["_unit","_body","_bodyPos"];
 		_bodyPos = getPosATL _body; 
 		_unit doMove _bodyPos; 
-		waitUntil {(_unit distance _bodyPos < 1.5) || {_unit getVariable ["lastAction",0] < time} || {!alive _unit}}; 
+		waitUntil {(_unit distance _bodyPos < 0.4) || {_unit getVariable ["lastAction",0] < time} || {!alive _unit}}; 
 		if (alive _unit && {!isNil str _body}) then {_unit action ["rearm",_body];}; 
 	};
 
@@ -35,7 +35,7 @@ if (count _body > 0 && {!(selectRandom _body getVariable ["isChecked",false])}) 
 	(_body select 0) setVariable ["isChecked",true,true]; 
 
 	// debug 
-	if (lambs_danger_debug_functions) then {systemchat format ["Danger.fsm checking body (%1 %2m)",name _unit,round (_unit distance (_body select 0))];}; 
+	if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc checking body (%1 %2m)",name _unit,round (_unit distance (_body select 0))];}; 
 	
 	// end 
 	true 
@@ -45,7 +45,7 @@ if (count _body > 0 && {!(selectRandom _body getVariable ["isChecked",false])}) 
 _unit doMove (_pos getPos [2 + random 10,random 360]); 
 
 // debug
-if (lambs_danger_debug_functions) then {systemchat format ["Danger.fsm checking body area (%1m)",round (_unit distance _pos)];}; 
+if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc checking body area (%1m)",round (_unit distance _pos)];}; 
 
 // end 
 true 

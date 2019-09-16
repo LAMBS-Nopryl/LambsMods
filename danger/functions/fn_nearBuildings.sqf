@@ -1,12 +1,20 @@
 // find nearby buildings 
-// version 1.1
+// version 1.2
 // by nkenny 
 
+/*
+	Arguments 
+	0, _unit 		Unit in question 
+	1, _range 		Range buildings are found 
+	2, _housePos	Return house positions 
+	3, _indoor		sort indoor house positions 
+*/
+
 // init 
-private _unit = param [0]; // pos 
-private _range = param [1,100]; // range
-private _housePos = param [2,false]; // return house positions
-private _indoor = param [3,false]; // return only indoor positions 
+private _unit = param [0]; 
+private _range = param [1,100];
+private _housePos = param [2,false];
+private _indoor = param [3,false];
 
 // houses 
 _houses = nearestObjects [_unit,["House","Strategic","Ruins"],_range,true];

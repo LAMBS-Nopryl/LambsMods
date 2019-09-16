@@ -1,17 +1,8 @@
 // Panic soldier 
-// version 1.11
+// version 1.2
 // by nkenny 
 
 /*
-	Panicked reactions 
-		Drop prone 
-		Run 
-		Do gesture 
-	
-	Features
-		Variable isPanicked
-		Timout of panick! 
-
 	Types
 	0 "GESTURE",
 	1 "PANIC",
@@ -19,7 +10,6 @@
 	3 "SUPPRESSION",
 	4 "SPRINT",
 	5 "CRAWL"
-
 */
 
 // init 
@@ -35,7 +25,7 @@ _random = selectRandom _random;
 _unit setVariable ["isPanicked",true];
 
 // debug
-if (lambs_danger_debug_functions) then {systemchat format ["Danger.fsm ** %1 in panic (%2)** ",name _unit,["Gesture","Panic","Hide","Suppression","Sprint","Crawl"] select _random];}; 
+if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc ** %1 in panic (%2)** ",name _unit,["Gesture","Panic","Hide","Suppression","Sprint","Crawl"] select _random];}; 
 
 // effects Gesture
 if (_random isEQUALTo 0) exitWith {

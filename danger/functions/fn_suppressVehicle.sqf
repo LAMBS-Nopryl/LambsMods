@@ -1,5 +1,5 @@
 // Suppression Vehicle
-// version 1.11
+// version 1.2
 // by nkenny 
 
 /*
@@ -36,7 +36,7 @@ _tpos = (ATLtoASL (_unit getHideFrom _target)) vectorAdd [0.5 - random 1,0.5 - r
 _unit doSuppressiveFire _tPos;
 
 // debug
-if (lambs_danger_debug_functions) then {systemchat format ["Danger.fsm vehicle suppression (%1s)",round (time - (vehicle _unit getVariable ["lastAction",0]))];}; 
+if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc %1 suppression (%2s)",getText (configFile >> "CfgVehicles" >> (typeOf vehicle _unit) >> "displayName"),round (time - (vehicle _unit getVariable ["lastAction",0]))];}; 
 
 // end 
 true 

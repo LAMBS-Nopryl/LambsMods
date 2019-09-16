@@ -19,9 +19,9 @@ item14[] = {"Reset_tac_timer",2,250,-690.000000,100.000000,-600.000000,150.00000
 item15[] = {"Causes__4_EXPLOSION",4,218,-426.824097,-51.676514,-316.824097,18.323486,5.000000,"Causes:" \n "4" \n "EXPLOSION or " \n "BULLET" \n ""};
 item16[] = {"Check_Panic",2,250,-416.824097,98.323486,-326.824097,148.323486,0.000000,"Check Panic"};
 item17[] = {"Cause_0_ENEMY_DE",4,218,-274.413330,-57.279205,-154.413330,12.720795,3.000000,"Cause 0" \n "ENEMY DETECTED"};
-item18[] = {"Gesture___Commun",2,250,-275.053711,97.802673,-155.053711,147.802673,0.000000,"Gesture" \n "+ Communicate"};
+item18[] = {"Gesture___Commun",2,4346,-275.053711,97.802673,-155.053711,147.802673,0.000000,"Gesture" \n "+ Communicate"};
 item19[] = {"Cause__8_CAN_FIRE",4,218,-1233.051636,-52.719620,-1090.094849,34.543472,2.000000,"Cause:" \n "8" \n "CAN FIRE" \n "(Infantry)"};
-item20[] = {"Stop_to_fire__Su",2,4346,-1206.479980,95.479095,-1116.479980,145.479095,0.000000,"Stop to fire" \n "+Suppression"};
+item20[] = {"Stop_to_fire__Su",2,250,-1206.479980,95.479095,-1116.479980,145.479095,0.000000,"Stop to fire" \n "+Suppression"};
 item21[] = {"Check_queue__and",2,250,88.421204,493.995087,178.421204,543.995056,0.000000,"Check queue " \n "and " \n "clean-up"};
 item22[] = {"Next__cause",4,218,89.520081,-37.191772,179.520081,12.808228,1.000000,"Next  cause"};
 item23[] = {"Always",8,218,88.569214,648.158142,178.569214,698.158142,0.000000,"Always"};
@@ -50,7 +50,7 @@ item45[] = {"Enemy_near___Veh",4,218,-258.293579,179.098221,-168.293579,229.0982
 item46[] = {"Recon_by_fire_",2,250,-255.826660,339.741241,-165.826645,389.741241,0.000000,"Recon by fire!"};
 item47[] = {"Begin",8,218,-513.168274,-446.017792,-377.844727,-379.241821,0.000000,"Begin"};
 item48[] = {"Ready",2,250,-719.926270,-348.520142,-172.006104,-281.615173,0.000000,"Ready"};
-item49[] = {"Cause__VIII_CAN",4,218,-1397.830688,-58.409760,-1249.097900,36.863373,2.000000,"Cause:" \n "VIII" \n "CAN FIRE" \n "(Vehicle)"};
+item49[] = {"Cause__VIII_CAN",4,218,-1397.830688,-58.409760,-1249.097900,36.863373,6.000000,"Cause:" \n "VIII" \n "CAN FIRE" \n "(Vehicle)"};
 version=1;
 class LayoutItems
 {
@@ -131,8 +131,8 @@ link63[] = {48,30};
 link64[] = {48,31};
 link65[] = {48,49};
 link66[] = {49,28};
-globals[] = {0.000000,0,0,0,0,640,480,1,283,6316128,1,-2116.739258,930.649170,1530.632080,-853.342773,1130,884,1};
-window[] = {2,-1,-1,-32000,-32000,839,26,1360,26,3,1148};
+globals[] = {0.000000,0,0,0,0,640,480,1,283,6316128,1,-915.116455,366.683228,754.729370,-296.394379,1078,884,1};
+window[] = {2,-1,-1,-32000,-32000,995,182,1685,182,3,1096};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -212,6 +212,9 @@ class FSM
                         itemno = 8;
                         init = /*%FSM<STATEINIT""">*/"// DEBUG" \n
                          "if (lambs_danger_debug_FSM) then {systemchat ""Danger.fsm ENEMY NEAR"";};" \n
+                         "" \n
+                         "// reorientate " \n
+                         "group _this setFormDir (_this getDir _dangerCausedBy); " \n
                          "" \n
                          "// look at! " \n
                          "_this lookAt _dangerPos;" \n
@@ -367,7 +370,6 @@ class FSM
                          "	[_this,_dangerCausedBy] call lambs_danger_fnc_panic; " \n
                          "}; " \n
                          "" \n
-                         "" \n
                          "// end " \n
                          "true "/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -404,12 +406,15 @@ class FSM
                          "	// Check part of group " \n
                          "	if ((random 1 > 0.4) && {count units group _this > 1} && {formationleader _this isEqualTo _this}) then {" \n
                          "	" \n
-                         "		// gesture " \n
-                         "		[_this,[""gestureFreeze""]] call lambs_danger_fnc_gesture; " \n
+                         "	// gesture " \n
+                         "	[_this,[""gestureFreeze""]] call lambs_danger_fnc_gesture; " \n
                          "" \n
-                         "		// Share information!" \n
-                         "		[_this,_dangerCausedBy] call lambs_danger_fnc_shareInformation;  " \n
+                         "	// Share information!" \n
+                         "	[_this,_dangerCausedBy] call lambs_danger_fnc_shareInformation;  " \n
                          "" \n
+                         "	// Call artillery " \n
+                         "	if (random 1 > 0.7 && {leader group _this isEqualTo _this} && {_action_time < time} && {_this knowsAbout _dangerCausedBy > 3.9} && {_this distance _dangerPos > 200}) then {" \n
+                         "	[_this,selectRandom [(_unit getHideFrom _target),_dangerPos]] call lambs_danger_fnc_callArtillery; " \n
                          "	}; " \n
                          "}; " \n
                          "" \n
@@ -428,7 +433,7 @@ class FSM
                                         priority = 3.000000;
                                         to="Seek_Cover";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"_onFoot && {_coward}"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_onFoot && {_coward} && {_action_time < (time + 15)}"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -480,7 +485,7 @@ class FSM
                          "_this lookAt _dangerPos;" \n
                          "" \n
                          "// delay " \n
-                         "_stopUntil = time + 4 + random 6;" \n
+                         "_stopUntil = time + 4 + random 4;" \n
                          "" \n
                          "// soldier stop" \n
                          "_this forceSpeed selectRandom [0,0,3];" \n
@@ -488,7 +493,7 @@ class FSM
                          "// Check suppression " \n
                          "if (unitReady _this && {_action_time < time} && {_this knowsAbout _dangerCausedBy > 3} && {_this distance _dangerCausedBy > 20}) then {" \n
                          "" \n
-                         "	//_this setUnitPosWeak selectRandom [""MIDDLE"",""DOWN""];" \n
+                         "	_this setUnitPosWeak selectRandom [""MIDDLE"",""DOWN""];" \n
                          "	[_this,_dangerCausedBy] call lambs_danger_fnc_suppress;" \n
                          "" \n
                          "}; " \n
@@ -541,14 +546,12 @@ class FSM
                         name = "Check_queue__and";
                         itemno = 21;
                         init = /*%FSM<STATEINIT""">*/"// systemchat ""Danger.fsm RESET"";" \n
-                         "" \n
-                         "// reset stance " \n
-                         "if (_action_time < time) then {" \n
-                         "	_this setUnitPosWeak ""AUTO"";" \n
-                         "	_this lookAt objNull;" \n
-                         "	//_this doWatch ObjNull; " \n
-                         "	_this forceSpeed -1;" \n
-                         "}; " \n
+                         "	" \n
+                         "// reset " \n
+                         "_this setUnitPosWeak ""AUTO"";" \n
+                         "_this lookAt objNull;" \n
+                         "//_this doWatch ObjNull; " \n
+                         "_this forceSpeed -1;" \n
                          "" \n
                          "// end " \n
                          "true "/*%FSM</STATEINIT""">*/;
@@ -932,7 +935,7 @@ class FSM
                         init = /*%FSM<STATEINIT""">*/"//systemchat format [""Danger.fsm HIDE in BUILDINGS (%1 - %2/%3)"",name _this,round (_this getVariable [""isSuppressing"",0]),round time];" \n
                          "" \n
                          "// Random scatter into bushes or hide in buildings " \n
-                         "[_this,_dangerCausedBy,30] call lambs_danger_fnc_hideInside; " \n
+                         "[_this,_dangerCausedBy,20] call lambs_danger_fnc_hideInside; " \n
                          "" \n
                          "// end " \n
                          "true"/*%FSM</STATEINIT""">*/;
@@ -1051,7 +1054,8 @@ class FSM
                          "_action_time = vehicle _this getVariable [""lastAction"",0]; " \n
                          "" \n
                          "// end " \n
-                         "_queue = []"/*%FSM</STATEINIT""">*/;
+                         "_queue = [];" \n
+                         ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -1074,6 +1078,17 @@ class FSM
                                         to="Reset_tac_timer";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
                                         condition=/*%FSM<CONDITION""">*/"_dangerCause isEqualTo 2"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Cause__VIII_CAN">*/
+                                class Cause__VIII_CAN
+                                {
+                                        itemno = 49;
+                                        priority = 6.000000;
+                                        to="Set_up_fire__Suppression";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_dangerCause isEqualTo 8 && {!_onFoot}"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -1110,17 +1125,6 @@ class FSM
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
-                                /*%FSM<LINK "Causes__3_ENEMY">*/
-                                class Causes__3_ENEMY
-                                {
-                                        itemno = 4;
-                                        priority = 2.000000;
-                                        to="Seek_cover___Com";
-                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"_dangerCause isEqualTo 3"/*%FSM</CONDITION""">*/;
-                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
-                                };
-                                /*%FSM</LINK>*/
                                 /*%FSM<LINK "Cause__8_CAN_FIRE">*/
                                 class Cause__8_CAN_FIRE
                                 {
@@ -1132,25 +1136,14 @@ class FSM
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
-                                /*%FSM<LINK "Cause__VIII_CAN">*/
-                                class Cause__VIII_CAN
+                                /*%FSM<LINK "Causes__3_ENEMY">*/
+                                class Causes__3_ENEMY
                                 {
-                                        itemno = 49;
+                                        itemno = 4;
                                         priority = 2.000000;
-                                        to="Set_up_fire__Suppression";
+                                        to="Seek_cover___Com";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"_dangerCause isEqualTo 8 && {!_onFoot}"/*%FSM</CONDITION""">*/;
-                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
-                                };
-                                /*%FSM</LINK>*/
-                                /*%FSM<LINK "Cause__7_SCREAM">*/
-                                class Cause__7_SCREAM
-                                {
-                                        itemno = 30;
-                                        priority = 1.000000;
-                                        to="React__by_looking";
-                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"_dangerCause isEqualTo 8"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_dangerCause isEqualTo 3"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -1162,6 +1155,17 @@ class FSM
                                         to="Check_dead__bodies";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
                                         condition=/*%FSM<CONDITION""">*/"_dangerCause in [5,6]"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "Cause__7_SCREAM">*/
+                                class Cause__7_SCREAM
+                                {
+                                        itemno = 30;
+                                        priority = 1.000000;
+                                        to="React__by_looking";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_dangerCause isEqualTo 8"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/

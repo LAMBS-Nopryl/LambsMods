@@ -1,12 +1,10 @@
 // Share information 
-// version 1.11
+// version 1.2
 // by nkenny 
 
 /*
 	Design
 		Rank increases range information is shared 
-
-
 */
 
 // init 
@@ -40,10 +38,8 @@ private _grp = allGroups select {local _x && {side _x isEqualTo side _unit} && {
 	true 
 } count _grp; 
 
-
-
 // debug
-if (lambs_danger_debug_functions) then {systemchat format ["Danger.fsm share information (%1 knows %2 to %3 groups at %4m range)",side _unit,_unit knowsAbout _target,count _grp,_range];}; 
+if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc share information (%1 knows %2 to %3 groups at %4m range)",side _unit,_unit knowsAbout _target,count _grp,_range];}; 
 
 // end 
 true 

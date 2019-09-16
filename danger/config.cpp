@@ -6,8 +6,8 @@ class CfgPatches {
     requiredAddons[] = {
         "A3_Characters_F"
     };
-    version = "1.0";
-    versionStr = "1.0";
+    version = "1.3";
+    versionStr = "1.3";
     author = "nkenny";
     authorUrl = "http://www.nopryl.no";
   };

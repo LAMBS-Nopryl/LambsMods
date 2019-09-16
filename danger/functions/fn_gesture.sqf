@@ -1,5 +1,5 @@
 // Do Gesture
-// version 1.0
+// version 1.2
 // by nkenny 
 
 // init 

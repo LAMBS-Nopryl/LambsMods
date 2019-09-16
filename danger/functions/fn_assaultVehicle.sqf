@@ -1,5 +1,5 @@
 // Assault with vehicle
-// version 1.13
+// version 1.2
 // by nkenny 
 
 // init 
@@ -12,7 +12,7 @@ if !(_target isKindOf "Man") exitWith {false};
 if (speed vehicle _unit > 15) exitWith {false};
 
 // settings 
-vehicle _unit setVariable ["lastAction",time + 11 + random 20];
+vehicle _unit setVariable ["lastAction",time + 9 + random 20];
 private _veh = vehicle _unit; 
 private _indoor = !(lineIntersects [eyepos _target,(eyePos _target) vectorAdd [0,0,4]]); 
 
@@ -47,7 +47,7 @@ if (_cannon) then {
 }; 
 
 // debug
-if (lambs_danger_debug_functions) then {systemchat format ["Danger.fsm vehicle assault building (cannon: %1)",_cannon];}; 
+if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc vehicle assault building (cannon: %1)",_cannon];}; 
 
 // end 
 true 

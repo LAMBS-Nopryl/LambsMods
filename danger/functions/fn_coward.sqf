@@ -1,5 +1,5 @@
 // check to see if unit should be coward 
-// version 1.1
+// version 1.2
 // by nkenny 
 
 // init 
@@ -9,6 +9,9 @@ private _target = param [1];
 // vehicles exit 
 if (!isNull objectParent _unit) exitWith {false};
 
+// no weapons? exit 
+if (count weapons _unit < 1) exitWith {true}; 
+
 // infantry exit -- but count! 
 if (isNull objectParent _target) exitWith {
 	private _check = (((count (units group _unit)) + 2) < ((count units group _target) / 3)) || {fleeing _unit};
@@ -17,7 +20,7 @@ if (isNull objectParent _target) exitWith {
 
 // Enemy vehicles? 
 _enemyVehicle = _target isKindOf "Tank" || {_target isKindOf "Air"}; 
-_noLauncher = secondaryWeapon _unit == "";
+_noLauncher = secondaryWeapon _unit isEqualTo "";
 
 // tough vehicle and no launcher
 if (_enemyVehicle && {_noLauncher}) exitWith {true}; 
