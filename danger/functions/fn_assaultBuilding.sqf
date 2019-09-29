@@ -1,44 +1,60 @@
-// Unit leader declares and finds valid building assault positions! 
+// Assault Buildings 
 // version 1.2
 // by nkenny 
 
 // init 
 private _unit = param [0]; 
-private _target = param [1];
-private _range = param [2,25]; 
 
-// already in CQB? exit 
-private _CQB = group _unit getVariable ["isCQB",[]]; 
-if (count _CQB > 0) exitWith {
+// settings 
+_unit setUnitPosWeak "UP";
 
-	// too far away? Cancel list 
-	if (_unit distance (_CQB select 0) > 300) then {
-		_CQB = []; 
-	}; 
+// get buildings 
+private _buildings = group _unit getVariable ["inCQC",[]];
+_buildings = _buildings select {count (_x getVariable ["LAMBS_CQB_cleared_" + str (side _unit),[0,0]]) > 0};
 
-	// Near enemy! 
-	if (_unit distance _target < lambs_danger_CQB_range && {alive _target}) then {
-		_CQB pushBackUnique getPosATL _target;
-	}; 
-
-	// sort em 
-	_CQB = [_CQB,[],{_unit distance _x},"ASCEND"] call BIS_fnc_sortBy;
-
-	// update variable 
-	group _unit setVariable ["isCQB",_CQB];  	
+// exit on no buildings -- middle unit pos
+if (count _buildings < 1) exitWith {
+	_unit setUnitPosWeak "MIDDLE";
+	_unit doFollow leader group _unit;
 }; 
 
-// find buildingPos 
-private _buildings = [_target,_range,true,true] call lambs_danger_fnc_nearBuildings;
+// define building 
+private _building = (_buildings select 0);
 
-// sort em 
-_buildings = [_buildings,[],{_unit distance _x},"ASCEND"] call BIS_fnc_sortBy;
+// find spots 
+private _buildingPos = _building getVariable ["LAMBS_CQB_cleared_" + str (side _unit),(_building buildingPos -1) select {lineIntersects [AGLToASL _x, (AGLToASL _x) vectorAdd [0,0,4]]}]; 
 
-// declare 
-group _unit setVariable ["isCQB",_buildings]; 
+// remove current target and do move 
+_unit doWatch ObjNull; 
+_unit lookAt (_buildingPos select 0);
+_unit doMove ((_buildingPos select 0) vectorAdd [0.7 - random 1.4,0.7 - random 1.4,0]);
 
-// debug
-if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc %1 declared CQB (%2m) (positions : %3)",side _unit,round (_unit distance2d _target),count _buildings];}; 
- 
-// end 
-true 
+// Close range cleanups 
+if (_unit distance (_buildingPos select 0) < 3.3) then {
+
+	// remove buildingpos 
+	_buildingPos deleteAt 0;
+
+	// update variable 
+	_building setVariable ["LAMBS_CQB_cleared_" + str (side _unit),_buildingPos]; 
+
+} else {
+
+	// distant units crouch
+	if (_unit distance _building > 30) then {
+		_unit setUnitPosWeak "MIDDLE"; 
+	}; 
+	// possibly teleport fix here
+	// possibly suppression fire here
+};
+
+// update group variable 
+if (count _buildingPos < 1) then {
+	group _unit setVariable ["inCQC",_buildings - [_building]];
+}; 
+
+// debug 
+if (lambs_danger_debug_functions && {leader group _unit isEqualTo _unit}) then {systemchat format ["%1 CQC %2x spots @ %3m",side _unit,count (_building buildingPos -1),round (_unit distance _building)];};
+
+// return 
+true

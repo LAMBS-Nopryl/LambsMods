@@ -1,5 +1,5 @@
-// find nearby buildings 
-// version 1.2
+// Find nearby buildings 
+// version 1.4
 // by nkenny 
 
 /*

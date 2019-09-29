@@ -1,4 +1,4 @@
-// Clear buildings 
+// Assault Position/Building
 // version 1.2
 // by nkenny 
 
@@ -13,69 +13,32 @@ if (stopped _unit || {!(attackEnabled _unit)}) exitWith {false};
 
 // settings 
 _unit setUnitPosWeak "UP";
-vehicle _unit setVariable ["lastAction",time + 14];
-
-// exit if in CQB mode 
-private _CQB = group _unit getVariable ["isCQB",[]]; 
-if (count _CQB > 0) exitWith {
-
-	// Ready units clear rooms
-	//doStop _unit;
-
-	// execute move
-	if (unitReady _unit) then {
-		
-		// move 
-		_unit doMove (_CQB select 0);
-	
-		// if near meters -- clean up CQB lists 
-		if (_unit distance (_CQB select 0) < 15) then {
-			_CQB deleteAt 0;
-			group _unit setVariable ["isCQB",_CQB];
-		} else {
-
-			// if stuck indoors -- teleport 
-			if (_unit distance (_CQB select 0) > 40 && {random 1 > 0.6} && {(LineIntersects [eyePos _unit, (eyePos _unit) vectorAdd [0,0,4]])}) then {
-				_unit setVehiclePosition [getPos _unit, [], 5];
-				if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc %1 teleport debug %2",side _unit,name _unit];}; 
-			}; 
-		};
-
-	} else {
-
-		// visual indicator of range 
-		_unit setUnitPosWeak "MIDDLE";	
-	}; 
-		
-	// debug 
-	if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc %1 assault CQB (positions : %2)",side _unit,count _CQB];}; 
-}; 
 
 // Near buildings + sort near positions + add target actual location
 _buildings = [_target,_range,true,true] call lambs_danger_fnc_nearBuildings;
 _buildings pushBack (getPosATL _target);
-_buildings = _buildings select {_x distance2d _target < 4.5}; 
+_buildings = _buildings select {_x distance2d _target < 5}; 
 
 // exit without buildings? -- Assault or delay! 
-if (count _buildings < 2 && {random 1 > 0.3}) exitWith {
+if (count _buildings < 2 || {random 1 > 0.8}) exitWith {
 	
-	// check indoors 
-	if (!(lineIntersects [eyePos _unit, (eyePos _unit) vectorAdd [0,0,6]]) || {random 1 > 0.5}) then {
+	// Outdoors or indoors with 5% chance to move out  
+	if (!(_unit call lambs_danger_fnc_indoor) || {random 1 > 0.95}) then {
 
 	// execute move 
-	_unit doMove (_unit getHideFrom _target);
+	_unit doMove (_unit getHideFrom _target); 
+	//_unit moveTo (_unit getHideFrom _target); //-- testing moveTo for lower level order
 
 	// debug 
-	if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc %1 assaulting position (%2m)",side _unit,round (_unit distance2d _target)]; };
-		
+	if (lambs_danger_debug_functions) then {systemchat format ["%1 assaulting position (%2m)",side _unit,round (_unit distance2d _target)];};
 	};
 }; 
 
 // execute move 
-_unit doMove selectRandom _buildings; 
+_unit doMove ((selectRandom _buildings) vectorAdd [0.7 - random 1.4,0.7 - random 1.4,0]); 
 
 // debug
-if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc %1 checking buildings (%2m)",side _unit,round (_unit distance2d _target)];}; 
+if (lambs_danger_debug_functions) then {systemchat format ["%1 checking buildings (%2m)",side _unit,round (_unit distance2d _target)];}; 
  
 // end 
 true 

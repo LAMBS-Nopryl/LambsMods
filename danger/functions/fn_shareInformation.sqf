@@ -1,5 +1,5 @@
 // Share information 
-// version 1.2
+// version 1.4
 // by nkenny 
 
 /*
@@ -9,18 +9,18 @@
 
 // init 
 private _unit = param [0]; 
-private _target = param [1,_unit,[ObjNull]]; 
+private _target = param [1,ObjNull]; 
 private _range = param [2,350];
+private _override = param [3,false]; 
 
-// settings 
-_unit setVariable ["lastGesture",time + 120];
-
-// nil 
-if (_unit knowsAbout _target < 1 || {_unit distance _target > 3000}) exitWith {false};
+// nil or captured
+if (_unit distance _target > 3000) exitWith {false};
+if ((_unit getVariable ["ace_captives_isHandcuffed",false]) || {_unit getVariable ["ace_captives_issurrendering",false]}) exitWith {false};
 
 // range 
-_range = [rank _unit,_range] call {
-	params ["_rank","_range"]; 
+_range = [rank _unit,_range,_override] call {
+	params ["_rank","_range"];
+	if (_override) exitWith {_range}; 				// to allow for custom short range updates
 	if (_rank isEqualTo "SERGEANT") exitWith {500};
 	if (_rank isEqualTo "LIEUTENANT") exitWith {800};
 	if (_rank isEqualTo "CAPTAIN") exitWith {1000};
@@ -34,12 +34,13 @@ private _grp = allGroups select {local _x && {side _x isEqualTo side _unit} && {
 
 // share information 
 {
-	_x reveal [_target,_unit knowsAbout _target]; 
+	if (!isNull _target) then {_x reveal [_target,_unit knowsAbout _target];};
+	if (leader _x distance _unit < (250 min _range)) then {_x setBehaviour "COMBAT";_x setFormDir ((leader _x) getDir _unit);};
 	true 
 } count _grp; 
 
 // debug
-if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc share information (%1 knows %2 to %3 groups at %4m range)",side _unit,_unit knowsAbout _target,count _grp,_range];}; 
+if (lambs_danger_debug_functions) then {systemchat format ["%1 share information (knows %2 to %3 groups at %4m range)",side _unit,_unit knowsAbout _target,count _grp,round _range];}; 
 
 // end 
 true 

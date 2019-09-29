@@ -1,171 +1,77 @@
 // Panic soldier 
-// version 1.2
+// version 1.4
 // by nkenny 
 
 /*
 	Types
-	0 "GESTURE",
-	1 "PANIC",
-	2 "HIDE",
-	3 "SUPPRESSION",
-	4 "SPRINT",
-	5 "CRAWL"
+	0 indoors
+	1 crawl 
+	2 hide 
+		- chance for accidental weapons discharge 
+
+	// returns 
+	delay in seconds 
+
 */
 
 // init 
 private _unit = param [0]; 
-private _target = param [1]; 
-private _random = param [2,[0,0,1,1,1,1,2,2,3],[]]; 
 
-// near enemy
-if (_unit distance _target < 35) exitWith {false};
+// near enemy + ace check
+if (_unit distance (_unit findNearestEnemy _unit) < 35) exitWith {3};
+if ((_unit getVariable ["ace_captives_isHandcuffed",false]) || {_unit getVariable ["ace_captives_issurrendering",false]}) exitWith {22};
 
 // settings 
-_random = selectRandom _random; 
-_unit setVariable ["isPanicked",true];
+private _indoor = _unit call lambs_danger_fnc_indoor; 
 
 // debug
-if (lambs_danger_debug_functions) then {systemchat format ["Danger.fnc ** %1 in panic (%2)** ",name _unit,["Gesture","Panic","Hide","Suppression","Sprint","Crawl"] select _random];}; 
+if (lambs_danger_debug_functions) then {systemchat format ["%1 - %2 in panic",side _unit,name _unit];}; 
 
-// effects Gesture
-if (_random isEQUALTo 0) exitWith {
+// indoor  -- gesture 
+if (_indoor) exitWith {
 
-	// do gesture
-	_unit forceSpeed -1; 
-	_unit setUnitPos "MIDDLE";
-	[_unit,["gestureCeaseFire","EvasiveLeft","EvasiveRight",selectRandom ["FastB","FastLB","FastRB"],"MountSide"]] call lambs_danger_fnc_gesture; 
-	_unit setVariable ["isPanicked",false];
-};
-
-// effects momentary panic 
-if (_random isEQUALTo 1) exitWith {
-	
-	// timer 
-	_timer = 6 + random 4; 
-
-	// execute panick 
+	// action 
 	_unit forceSpeed 0;
-	_unit setUnitPosWeak "MIDDLE";
 	_unit playMoveNow selectRandom ["AmovPercMstpSnonWnonDnon_Scared","AmovPercMstpSnonWnonDnon_Scared2"];
 
-	// reset panick
-	[_unit,_timer] spawn {
-		params ["_unit","_timer"]; 
-		sleep _timer; 
-		if (!alive _unit) exitWith {};
-		_unit setVariable ["isPanicked",false]; 
-	}; 
+	// chance action 
+	_unit setUnitPos selectRandom ["MIDDLE","MIDDLE","PRONE"];
+
+	// return 
+	_delay = 6 + random 4; 
+	_delay 
+
 }; 
 
-// effects hide 
-if (_random isEQUALTo 2) exitWith {
+// outdoor -- crawl 
+if (random 1 > (skill _unit)) exitWith {
 
-	// timer 
-	_timer = 12 + random 12;
+	// action
+	_unit dowatch objNull;  
+	_unit setUnitPos "DOWN";
+	[_unit,["FastB","FastLB","FastRB"]] call lambs_danger_fnc_gesture;
+	
+	// return 
+	_delay = 6 + random 6; 
+	_delay 
+}; 
 
-	// do do hide!
-	[_unit,_target,55] call lambs_danger_fnc_hideInside;
+// outdoor -- hide 
 
-	// reset panick
-	[_unit,_timer] spawn {
-		params ["_unit","_timer"]; 
-		sleep _timer;		
-		if (!alive _unit) exitWith {};
-		_unit doFollow leader group _unit;
-		_unit setVariable ["isPanicked",false]; 
-	}; 
+// action 
+_unit dowatch objNull;  
+[_unit,_unit getPos [100,direction _unit],55] call lambs_danger_fnc_hideInside;
+
+// chance to randomly fire weapon
+if ((random 1 > 0.7) && {!(primaryWeapon _unit isEqualTo "")}) then {
+	_unit forceWeaponFire [(weapons _unit) select 0, selectRandom (getArray (configFile >> "CfgWeapons" >> ((weapons _unit) select 0) >> "modes"))];
+}; 
+
+// chance to randomly wave 
+if (random 1 > 0.4) then {
+	[_unit,["GestureCover"]] call lambs_danger_fnc_gesture;
 };
 
-// effects Random suppression! 
-if (_random isEQUALTo 3) exitWith {
-
-	// timer 
-	_timer = 2 + random 4;
-
-	// go prone 
-	_unit forceSpeed 0; 
-	
-	// chance for random suppression 
-	_object = nearestObjects [_unit,["All"],100,true];
-	_unit doSuppressiveFire ((getposASL selectRandom _object) vectorAdd [random 4,random 4, random 5]);
-	//_unit doWatch getposASL (selectRandom _object);
-	[_unit,_object] spawn {
-		params ["_unit","_object"];
-		if (primaryWeapon _unit isEqualTo "") exitWith {};
-		while {alive _unit && {_unit getVariable ["isPanicked",false]} && {!(_unit getVariable ["ACE_isUnconscious",false])}} do {
-			_unit forceWeaponFire [(weapons _unit) select 0, selectRandom (getArray (configFile >> "CfgWeapons" >> ((weapons _unit) select 0) >> "modes"))];
-			_unit lookAt selectRandom _object;
-			_unit forceSpeed 24;
-			sleep 0.1; 
-		};
-	}; 
-
-	// reset panick
-	[_unit,_timer] spawn {
-		params ["_unit","_timer"]; 
-		sleep _timer;		
-		if (!alive _unit) exitWith {};
-		_unit forceSpeed -1;
-		_unit setVariable ["isPanicked",false]; 
-		_unit playMoveNow selectRandom ["AmovPercMstpSnonWnonDnon_Scared","AmovPercMstpSnonWnonDnon_Scared2"];
-	}; 
-}; 
-
-// ---------------------------
-//    NOT USED BENEATH HERE 
-// ---------------------------
-
-// effects sprint/rush
-if (_random isEQUALTo 4) exitWith {
-
-	// timer 
-	_timer = 8 + random 4;
-	
-	// remove weapons 
-  	_weapons = weapons _unit; 
-  	removeAllWeapons _unit; 
-	
-	// execute move
-	_unit setUnitPos "MIDDLE"; 
-	_unit playMoveNow selectRandom ['ApanPknlMsprSnonWnonDf','ApanPercMsprSnonWnonDf'];
-    if (unitReady _unit) then {_unit doMove (_unit getPos [100 + random 100,((_unit getDir _target) + 30 - random 60)])};
-
-	// reset panick
-	[_unit,_timer,_weapons] spawn {
-		params ["_unit","_timer","_weapons"]; 
-		sleep _timer;		
-		if (!alive _unit) exitWith {};
-		_unit setVariable ["isPanicked",false]; 
-		_unit switchMove "AmovPknlMrunSrasWrflDfr_ldst";
-		_unit playActionNow "Civil";
-		{_unit addWeapon _x;true} count _weapons;	// return weapons 
-	}; 
-};
-
-// effects crawl
-
-// timer 
-_timer = 15 + random 12;
-
-// execute move
-_unit playMoveNow selectRandom ['ApanPpneMsprSnonWnonDf','ApanPpneMrunSnonWnonDf',"ApanPpneMstpSnonWnonDnon_G01","ApanPpneMstpSnonWnonDnon_G02","ApanPpneMstpSnonWnonDnon_G03"];
-if (unitReady _unit) then {_unit doMove (_unit getPos [100 + random 100,((_target getDir _unit) + 30 - random 60)])};
-
-// remove weapons 
-private _weapons = weapons _unit; 
-removeAllWeapons _unit; 
-
-// reset panick
-[_unit,_timer,_weapons] spawn {
-	params ["_unit","_timer","_weapons"]; 
-	sleep _timer;		
-	if (!alive _unit) exitWith {};
-	sleep 3; 
-	_unit setVariable ["isPanicked",false]; 
-	_unit switchMove "AmovPpneMstpSrasWrflDnon_turnL";
-	_unit playActionNow "CivilLying";
-	{_unit addWeapon _x;true} count _weapons;	// return weapons 
-}; 
-
-// end 
-true 
+// return 
+_delay = 12 + random 12; 
+_delay 
