@@ -3,7 +3,12 @@
 //by nkenny
 
 // init
-params ["_unit",["_pos",getPos _unit]];
+params ["_unit",["_pos",[]],"_enemy","_targets","_units","_weapons"];
+
+// get pos
+if (_pos isEqualTo []) then {
+    _pos = getPos _unit;
+};
 
 // settings 
 private _mode = toLower (group _unit getVariable ["dangerAI","enabled"]);
@@ -12,7 +17,6 @@ private _mode = toLower (group _unit getVariable ["dangerAI","enabled"]);
 if (_mode isEqualTo "disabled") exitWith {false};
 
 // enemy
-private ["_enemy","_targets","_units","_weapons"];
 _enemy = _unit targets [true,600,[],0,_pos];
 
 // update minimum delay

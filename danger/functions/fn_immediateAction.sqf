@@ -3,12 +3,16 @@
 // by nkenny
 
 // init
-params ["_unit",["_stance",stance _unit]];
+params ["_unit",["_stance",""]];
+
+if (_stance isEqualTo "") then {
+    _stance = stance _unit; 
+}; 
 
 // prone -- exit quickly 
 if (_stance isEqualTo "PRONE") exitWith {
-	[_unit,["EvasiveLeft","EvasiveRight"]] call lambs_danger_fnc_gesture;
-	true
+    [_unit,["EvasiveLeft","EvasiveRight"]] call lambs_danger_fnc_gesture;
+    true
 };
 
 // Not standing -- No weapon --  ACE3 captive exit
@@ -22,28 +26,28 @@ if ((_unit getVariable ["ace_captives_isHandcuffed",false]) || {_unit getVariabl
 
 // standing to rush
 if (random 1 > 0.5) exitWith {
-	_unit switchMove selectRandom [
-		"AmovPercMrunSrasWrflDfl_AmovPercMrunSrasWrflDf",
-		"AmovPercMrunSrasWrflDfl_AmovPercMrunSrasWrflDfr",
-		"AmovPercMrunSrasWrflDfr_AmovPercMrunSrasWrflDf",
-		"AmovPercMrunSrasWrflDfr_AmovPercMrunSrasWrflDfl"
-	];
-	true
+    _unit switchMove selectRandom [
+        "AmovPercMrunSrasWrflDfl_AmovPercMrunSrasWrflDf",
+        "AmovPercMrunSrasWrflDfl_AmovPercMrunSrasWrflDfr",
+        "AmovPercMrunSrasWrflDfr_AmovPercMrunSrasWrflDf",
+        "AmovPercMrunSrasWrflDfr_AmovPercMrunSrasWrflDfl"
+    ];
+    true
 };
 
 // standing to prone 
 if (random 1 > 0.9) exitWith {
-	_unit switchMove "AmovPercMsprSlowWrflDf_AmovPpneMstpSrasWrflDnon";
-	_unit setUnitPosWeak "DOWN";
-	true 
+    _unit switchMove "AmovPercMsprSlowWrflDf_AmovPpneMstpSrasWrflDnon";
+    _unit setUnitPosWeak "DOWN";
+    true 
 };
 
 // standing to crouched
 _unit setUnitPos "MIDDLE";
 _unit switchMove selectRandom [
-	"AmovPercMevaSrasWrflDf_AmovPknlMstpSrasWrflDnon",
-	"AmovPercMevaSrasWrflDfl_AmovPknlMstpSrasWrflDnon",
-	"AmovPercMevaSrasWrflDfr_AmovPknlMstpSrasWrflDnon"
+    "AmovPercMevaSrasWrflDf_AmovPknlMstpSrasWrflDnon",
+    "AmovPercMevaSrasWrflDfl_AmovPknlMstpSrasWrflDnon",
+    "AmovPercMevaSrasWrflDfr_AmovPknlMstpSrasWrflDnon"
 ];
 
 // end

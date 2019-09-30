@@ -14,11 +14,7 @@
 */
 
 // init
-params ["_unit",["_target",ObjNull],["_range",350],["override",false]];
-private _unit = param [0];
-private _target = param [1,ObjNull];
-private _range = param [2,350];
-private _override = param [3,false];
+params ["_unit",["_target",ObjNull],["_range",350],["_override",false]];
 
 // nil or captured
 if (_unit distance _target > 3000) exitWith {false};

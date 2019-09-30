@@ -18,7 +18,11 @@
 */
 
 // init
-params ["_unit",["_target",_unit findNearestEnemy _unit],["_threshold",18]];
+params ["_unit",["_target",[]],["_threshold",18]];
+
+if (_targets isEqualTo []) then {
+    _targets = _unit findNearestEnemy _unit;
+};
 
 // cannot move or moving
 if (!canMove _unit || {currentCommand _unit isEqualTo "MOVE"}) exitWith {true};

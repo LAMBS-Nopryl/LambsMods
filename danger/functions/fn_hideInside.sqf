@@ -3,7 +3,12 @@
 // by nkenny
 
 // init
-params ["_unit","_danger",["_range",55],["_buildings",[_unit,_range,true,true] call lambs_danger_fnc_nearBuildings]];
+params ["_unit","_danger",["_range",55],["_buildings",[]];
+
+// find buildings 
+if (_buildings isEqualTo []) then {
+    _buildings = [_unit,_range,true,true] call lambs_danger_fnc_nearBuildings;
+};
 
 // stopped -- exit
 //if (!(_unit checkAIFeature "PATH") || {!(_unit checkAIFeature "MOVE")}) exitWith {};

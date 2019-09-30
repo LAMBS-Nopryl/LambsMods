@@ -3,7 +3,12 @@
 //by nkenny
 
 // init
-params ["_unit","_target",["_buildings",[_unit getPos [random 100,_unit getDir _target],35,true,false] call lambs_danger_fnc_nearBuildings]];
+params ["_unit","_target",["_buildings",[]]];
+
+// find buildings 
+if (_buildings isEqualTo []) then {
+    _buildings = [_unit getPos [random 100,_unit getDir _target],35,true,false] call lambs_danger_fnc_nearBuildings;
+};
 
 // gesture
 [_unit,["gestureGo","gestureGoB"]] call lambs_danger_fnc_gesture;

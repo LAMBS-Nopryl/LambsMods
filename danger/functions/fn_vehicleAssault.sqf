@@ -11,7 +11,12 @@
 */
 
 // init
-params ["_unit","_pos","_target",["_buildings",[_pos,28,false,false] call lambs_danger_fnc_nearBuildings]];
+params ["_unit","_pos","_target",["_buildings",[]]];
+
+// find buildings 
+if (_buildings isEqualTo []) then {
+    _buildings = [_pos,28,false,false] call lambs_danger_fnc_nearBuildings;
+};
 
 //  target on foot
 if (_unit distance2d _pos < lambs_danger_minSuppression_range) exitWith {false};

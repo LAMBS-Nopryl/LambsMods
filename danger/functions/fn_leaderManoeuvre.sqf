@@ -3,7 +3,12 @@
 //by nkenny
 
 // init
-params ["_unit","_target",["_units",units group _unit]];
+params ["_unit","_target",["_units",[]];
+
+// find units 
+if (_units isEqualTo []) then {
+    _buildings = units group _unit;
+};
 
 // find overwatch positions
 _pos = [_target, _unit distance _target, 100 min (_unit distance _target), 40, getPosATL _unit] call BIS_fnc_findOverwatch;

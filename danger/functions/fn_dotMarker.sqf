@@ -11,7 +11,7 @@ Arguments
 */
 
 // init
-params ["_pos",["_text",""],["_color","colorBlack","_type","mil_dot"]];
+params ["_pos",["_text",""],["_color","colorBlack"],["_type","mil_dot"]];
 _pos = _pos call bis_fnc_position;
 
 // create

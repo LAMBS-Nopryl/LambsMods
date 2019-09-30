@@ -1,9 +1,15 @@
 // Leader Calls for group to hide
-// version 1.41
+// version 1.4.1
 //by nkenny
 
 // init
-params ["_unit","_target",["_buildings",[_unit getPos [10,_target getDir _unit],45,true,true] call lambs_danger_fnc_nearBuildings]];
+// init
+params ["_unit","_target",["_buildings",[]]];
+
+// find buildings 
+if (_buildings isEqualTo []) then {
+    _buildings = [_unit getPos [10,_target getDir _unit],45,true,true] call lambs_danger_fnc_nearBuildings;
+};
 
 // gesture
 [_unit,["gestureCover"]] call lambs_danger_fnc_gesture;
