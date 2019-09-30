@@ -1,13 +1,13 @@
 // Checks if unit is indoors
-// version 1.0
+// version 1.01
 // by nkenny 
 
 
 // init
-private _unit = param [0]; 
+params ["_unit"];
 
-// check 
+// check
 _unit = lineIntersects [eyePos _unit,eyePos _unit vectorAdd [0,0,4]];
 
-// return 
-_unit 
+// return
+_unit

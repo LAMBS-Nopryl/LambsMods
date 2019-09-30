@@ -1,9 +1,9 @@
 // DEBUG : return danger type
-// version 1.0
+// version 1.01
 // by nkenny 
 
 // init
-params ["_select"]; 
+params ["_select"];
 
 // return 
 if (_select isEqualTo 0) exitWith {"Enemy Detected"};

@@ -1,14 +1,13 @@
 // Unit enters CQB mode 
 // version 2.0
-// by nkenny 
+// by nkenny
 
 /*
-	Adapted from taskCQB 
-  Unused as of 1.4 
+    Adapted from taskCQB
+  NB NB NB -- Unused as of 1.4
 */
 
-
-// FUNCTIONS 
+// FUNCTIONS
 
 // find buildings
 _fn_find = {
@@ -43,37 +42,37 @@ _fn_act = {
     doStop units _grp; 
     leader _grp playAction selectRandom ["gestureAttack","gestureGo","gestureGoB"];
     
-    // location 
+    // location
     _buildingPos = ((nearestBuilding _enemy) buildingPos -1) select {_x distance _enemy < 5};
     _buildingPos pushBack getPosATL _enemy;
     
     // act
-	  {_x doMove selectRandom _buildingPos;_x doWatch _enemy;true} count units _grp; 
+      {_x doMove selectRandom _buildingPos;_x doWatch _enemy;true} count units _grp; 
   };
     
   // clear and check buildings
   _buildingPos = _buildings getVariable ["LAMBS_CQB_cleared_" + str (side _grp),(_buildings buildingPos -1) select {lineIntersects [AGLToASL _x, (AGLToASL _x) vectorAdd [0,0,10]]}];
   //_bp = _b getVariable ["nk_CQB_cleared",(_b buildingPos -1)];
   {
-    // the assault 
+    // the assault
     if ((count _buildingPos > 0) && {unitReady _x}) then {
-      _x setUnitPos "UP";
-      _x doMove ((_buildingPos select 0) vectorAdd [0.5 - random 1,0.5 - random 1,0]);
-        
-      // debug 
-      if (lambs_danger_debug_functions) then {
-			  _veh = createVehicle ["Sign_Arrow_Large_Blue_F",_buildingPos select 0,[],0,"CAN_COLLIDE"];
-		  };
-        
-      // Update building list when soldiers are close -- random chance to update regardless as bugfix
-      if (_x distance (_buildingPos select 0) < 30 || {(leader _grp isEqualTo _x) && {random 1 > 0.5}}) then {
-			  _buildingPos deleteAt 0;
-		  } else {
-			  // teleport -- units sometime gets stuck due to Arma buildings
-			  if ((_unit call lambs_danger_fnc_indoor) && {_x distance (_buildingPos select 0) > 45} && {random 1 > 0.6}) then {
-				  _x setVehiclePosition [getPos _x, [], 3.5];
-				};
-			};
+        _x setUnitPos "UP";
+        _x doMove ((_buildingPos select 0) vectorAdd [0.5 - random 1,0.5 - random 1,0]);
+
+    // debug
+    if (lambs_danger_debug_functions) then {
+            _veh = createVehicle ["Sign_Arrow_Large_Blue_F",_buildingPos select 0,[],0,"CAN_COLLIDE"];
+    };
+
+    // Update building list when soldiers are close -- random chance to update regardless as bugfix
+    if (_x distance (_buildingPos select 0) < 30 || {(leader _grp isEqualTo _x) && {random 1 > 0.5}}) then {
+              _buildingPos deleteAt 0;
+    } else {
+              // teleport -- units sometime gets stuck due to Arma buildings
+              if ((_unit call lambs_danger_fnc_indoor) && {_x distance (_buildingPos select 0) > 45} && {random 1 > 0.6}) then {
+                  _x setVehiclePosition [getPos _x, [], 3.5];
+                };
+            };
     } else {
       
       // visualisation -- unit is either busy or too far to be effective 
@@ -81,18 +80,18 @@ _fn_act = {
       
       // Unit is ready and outside -- try suppressive fire 
       if (unitReady _x && {!(lineIntersects [eyePos _x, (eyePos _x) vectorAdd [0,0,10]])}) then {
-				_x doSuppressiveFire _buildings;
-				_x doFollow leader _grp;
-			};
-		};
-  	true 
-  } count units _grp; 
+                _x doSuppressiveFire _buildings;
+                _x doFollow leader _grp;
+            };
+        };
+      true
+  } count units _grp;
 
   // update variable 
   _buildings setVariable ["LAMBS_CQB_cleared_" + str (side _grp),_buildingPos];
-}; 
+};
 
-// init 
+// init
 private _grp = param [0]; 
 private _range = param [1,lambs_danger_CQB_range];
 private _cycle = param [2,21]; 
@@ -101,15 +100,15 @@ private _cycle = param [2,21];
 if (!local _grp) exitWith {};
 _grp = [_grp] call {if (typeName _grp == "OBJECT") exitWith {group _grp};_grp}; 
 
-// variable -- script should only run once!  
+// variable -- script should only run once!
 if (_grp getVariable ["inCQB",false]) exitWith {};
 _grp setVariable ["inCQB",true]; 
 
-// store group settings 
+// store group settings
 _speed = speedMode _grp;
 _formation = formation _grp; 
 
-// set assault mode 
+// set assault mode
 _grp setSpeedMode "FULL";
 _grp setFormation "FILE";
 _grp enableAttack false;
@@ -132,34 +131,34 @@ while {{alive _x} count units _grp > 0} do {
   _buildings = call _fn_find;
   
   // find enemy
-  _enemy = call _fn_enemy; 
+  _enemy = call _fn_enemy;
   
   // act! 
   if (isNull _buildings && {isNull _enemy}) exitWith {}; 
-  call _fn_act; 
+  call _fn_act;
   
   // wait
-  sleep _cycle; 
+  sleep _cycle;
   if (lambs_danger_debug_functions) then {systemchat format ["danger.fnc taskCQB: (team: %1) (units: %2) (enemies: %3)",groupID _grp,count units _grp,!isNull _enemy];};
 };
 
-// reset variable 
+// reset variable
 _grp setVariable ["inCQB",false]; 
 
-// reset modes 
+// reset modes
 _grp setSpeedMode _speed;
 _grp setFormation _formation;
 _grp enableAttack true;
 
-// reset stances 
+// reset stances
 {
-	_x enableAI "AUTOCOMBAT";
+    _x enableAI "AUTOCOMBAT";
   _x enableAI "SUPPRESSION";
-	_x moveTo getpos leader _grp; 
-	_x setUnitPos "AUTO";
-	_x doFollow leader _grp;
-	true
-} count units _grp; 
+    _x moveTo getpos leader _grp; 
+    _x setUnitPos "AUTO";
+    _x doFollow leader _grp;
+    true
+} count units _grp;
 
 // end 
 true 

@@ -6,14 +6,14 @@ class CfgPatches {
     requiredAddons[] = {
         "A3_Characters_F"
     };
-    version = "1.4";
-    versionStr = "1.4";
+    version = "1.41";
+    versionStr = "1.41";
     author = "nkenny";
     authorUrl = "http://www.nopryl.no";
   };
 };
 
-// compile functions 
+// compile functions
 #include "cfgFunctions.hpp"
 
 // add new FSM

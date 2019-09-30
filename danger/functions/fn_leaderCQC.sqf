@@ -1,29 +1,28 @@
-// Finds and declares nearest building as assault position  
+// Finds and declares nearest building as assault position
 // version 1.0
-// by nkenny 
+// by nkenny
 
-// init 
-private _unit = param [0];
-private _range = param [1,lambs_danger_CQB_range];
+// init
+params ["_unit",["_range",lambs_danger_CQB_range]];
 
 // new variable + distance check
-_inCQC = group _unit getVariable ["inCQC",[]]; 
-_inCQC = _inCQC select {_x distance2d _unit < 250}; 
+_inCQC = group _unit getVariable ["inCQC",[]];
+_inCQC = _inCQC select {_x distance2d _unit < 250};
 
-// buildings present? ignore 
-if (count _inCQC > 0) exitWith {}; 
+// buildings present? ignore
+if (count _inCQC > 0) exitWith {};
 
-// define buildings 
-private _buildings = [_unit,_range] call lambs_danger_fnc_nearBuildings; 
-_buildings = _buildings select {count (_x getVariable ["LAMBS_CQB_cleared_" + str (side _unit),[0,0]]) > 0}; 
+// define buildings
+private _buildings = [_unit,_range] call lambs_danger_fnc_nearBuildings;
+_buildings = _buildings select {count (_x getVariable ["LAMBS_CQB_cleared_" + str (side _unit),[0,0]]) > 0};
 
-// update variable 
+// update variable
 {
-	_inCQC pushBackUnique _x; 
-	true
-} count _buildings; 
+    _inCQC pushBackUnique _x;
+    true
+} count _buildings;
 group _unit setVariable ["inCQC",_inCQC];
 
-// end 
-_buildings 
+// end
+_buildings
 

@@ -1,14 +1,12 @@
-// Add to group leader modes 
-// version 1.4 
-// by nkenny 
+// Add to group leader modes
+// version 1.41
+// by nkenny
 
-// init 
-private _unit = param [0];
-private _setting = param [1,0];
-private _target = param [2,ObjNull,[ObjNull,[]]];
+// init
+params ["_unit",["_setting",0],["_target",ObjNull]];
 
-// get variable 
-private _dangerMode = group _unit getVariable ["dangerMode",[[],[],true,time]]; 
+// get variable
+private _dangerMode = group _unit getVariable ["dangerMode",[[],[],true,time]];
 
 // old dangers discarded
 if ((_dangerMode select 3) < time) then {_dangerMode = [[],[],true,0]};
@@ -19,8 +17,8 @@ if ((_dangerMode select 3) < time) then {_dangerMode = [[],[],true,0]};
 _dangerMode set [2,false];
 _dangerMode set [3,time + 360];
 
-// update variable 
-group _unit setVariable ["dangerMode",_dangerMode,false]; 
+// update variable
+group _unit setVariable ["dangerMode",_dangerMode,false];
 
-// end 
-true 
+// end
+true

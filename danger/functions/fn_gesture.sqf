@@ -1,13 +1,12 @@
 // Do Gesture
-// version 1.4
-// by nkenny 
+// version 1.41
+// by nkenny
 
-// init 
-private _unit = param [0]; 
-private _gesture = param [1,["gestureFreeze"]]; 
+// init
+params ["_unit",["_gesture",["gestureFreeze"]]];
 
-// do it 
-_unit playActionNow selectRandom _gesture; 
+// do it
+_unit playActionNow selectRandom _gesture;
 
-// end 
-true 
+// end
+true

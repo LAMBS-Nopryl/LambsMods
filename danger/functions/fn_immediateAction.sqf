@@ -1,27 +1,26 @@
-// Immediate reaction on getting hit 
-// version 1.4
-// by nkenny 
+// Immediate reaction on getting hit
+// version 1.41
+// by nkenny
 
-// init 
-private _unit = param [0]; 
-private _stance = param [1,stance _unit]; 
+// init
+params ["_unit",["_stance",stance _unit]];
 
 // prone -- exit quickly 
 if (_stance isEqualTo "PRONE") exitWith {
 	[_unit,["EvasiveLeft","EvasiveRight"]] call lambs_danger_fnc_gesture;
-	true 
+	true
 };
 
-// Not standing -- No weapon --  ACE3 captive exit 
-if !(_stance isEqualTo "STAND") exitWith {false}; 
-if (primaryWeapon _unit isEqualTo "" || {!(primaryWeapon _unit isEqualTo currentWeapon _unit)} || {!canMove _unit}) exitWith {false}; 
+// Not standing -- No weapon --  ACE3 captive exit
+if !(_stance isEqualTo "STAND") exitWith {false};
+if (primaryWeapon _unit isEqualTo "" || {!(primaryWeapon _unit isEqualTo currentWeapon _unit)} || {!canMove _unit}) exitWith {false};
 if ((_unit getVariable ["ace_captives_isHandcuffed",false]) || {_unit getVariable ["ace_captives_issurrendering",false]}) exitWith {false};
 
 
-// stopped or path/move disabled 
-//if (stopped _unit) exitWith {false}; 
+// stopped or path/move disabled
+//if (stopped _unit) exitWith {false};
 
-// standing to rush 
+// standing to rush
 if (random 1 > 0.5) exitWith {
 	_unit switchMove selectRandom [
 		"AmovPercMrunSrasWrflDfl_AmovPercMrunSrasWrflDf",
@@ -29,7 +28,7 @@ if (random 1 > 0.5) exitWith {
 		"AmovPercMrunSrasWrflDfr_AmovPercMrunSrasWrflDf",
 		"AmovPercMrunSrasWrflDfr_AmovPercMrunSrasWrflDfl"
 	];
-	true 
+	true
 };
 
 // standing to prone 
@@ -39,13 +38,13 @@ if (random 1 > 0.9) exitWith {
 	true 
 };
 
-// standing to crouched 
-_unit setUnitPos "MIDDLE"; 
+// standing to crouched
+_unit setUnitPos "MIDDLE";
 _unit switchMove selectRandom [
 	"AmovPercMevaSrasWrflDf_AmovPknlMstpSrasWrflDnon",
 	"AmovPercMevaSrasWrflDfl_AmovPknlMstpSrasWrflDnon",
 	"AmovPercMevaSrasWrflDfr_AmovPknlMstpSrasWrflDnon"
-]; 
+];
 
 // end
-true 
+true

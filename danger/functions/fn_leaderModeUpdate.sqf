@@ -1,18 +1,19 @@
-// remove from  group leader modes 
-// version 1.0 
-// by nkenny 
+// remove from group leader modes
+// version 1.41
+// by nkenny
 
-// init 
-private _unit = param [0];
-private _setting = param [1,0];
-private _delay = param [2,1];
+// init
+params ["_unit",["_setting",0],["_delay",1]];
 
-// get variable 
-private _dangerMode = group _unit getVariable ["dangerMode",[[],[],true,time]]; 
+// get variable
+private _dangerMode = group _unit getVariable ["dangerMode",[[],[],true,time]];
 
 // Update danger type and target/position
 _dangerMode set [0,(_dangerMode select 0) - [_setting]];
 _dangerMode set [3,time + 360 + random _delay];
 
-// update variable 
-group _unit setVariable ["dangerMode",_dangerMode,false]; 
+// update variable
+group _unit setVariable ["dangerMode",_dangerMode,false];
+
+// return
+true
