@@ -10,7 +10,7 @@ class CfgPatches {
         "LAMBS_RunnerMC_F",
         "LAMBS_ScoutMC_F",
         "LAMBS_SoldierS_F",
-        "LAMBS_ScoutS_F",        
+        "LAMBS_ScoutS_F",
         "LAMBS_Sniper_F",
         "LAMBS_B_Helipilot_F"
     };
@@ -36,7 +36,7 @@ class CfgPatches {
         "A3_Characters_F",
         "A3_Characters_F_BLUFOR"
     };
-    version = "1.31"; 
+    version = "1.31";
     versionStr = "1.31";
     author = "nopryl.no";
     authorUrl = "http://www.nopryl.no";
@@ -46,22 +46,22 @@ class CfgPatches {
 class cfgVehicles {
     class B_soldier_F;
     class I_Sniper_F;
-    class B_Helipilot_F; 
-    // Woodland M98 
+    class B_Helipilot_F;
+    // Woodland M98
     class LAMBS_Soldier_F : B_soldier_F {
-        scope = 1; 
+        scope = 1;
         author = "nopryl.no";
-        side = 1; 
+        side = 1;
         displayName = "Rifleman [M98]";
         uniformClass ="LAMBS_U_CombatUniform";
         model = "\A3\Characters_F_Beta\INDEP\ia_soldier_01.p3d";
-	    hiddenSelections[] = {
-			"Camo",
+        hiddenSelections[] = {
+            "Camo",
             "insignia"
-		};
-		hiddenSelectionsTextures[] = {
-			"\lambs_uniform\data\texture\uniform_m98.paa"
-		};        
+        };
+        hiddenSelectionsTextures[] = {
+            "\uniform\data\texture\uniform_m98.paa"
+        };
     };
     class LAMBS_Scout_F : LAMBS_Soldier_F {
         displayName = "Rifleman [M98] (Rolled-up)";
@@ -70,21 +70,21 @@ class cfgVehicles {
     };
     class LAMBS_Ranger_F : LAMBS_Scout_F {
         displayName = "Rifleman [M98] (Ranger)";
-		hiddenSelectionsTextures[] = {
-			"\lambs_uniform\data\texture\uniform_m98_ranger.paa"
-		};                
-    };    
-    // Desert M03 
+        hiddenSelectionsTextures[] = {
+            "\uniform\data\texture\uniform_m98_ranger.paa"
+        };
+    };
+    // Desert M03
     class LAMBS_SoldierD_F : LAMBS_Soldier_F {
         displayName = "Rifleman [M03]";
         uniformClass ="LAMBS_U_CombatUniformD";
-	    hiddenSelections[] = {
-			"Camo",
+        hiddenSelections[] = {
+            "Camo",
             "insignia"
-		};
-		hiddenSelectionsTextures[] = {
-			"\lambs_uniform\data\texture\uniform_m03.paa"
-		};        
+        };
+        hiddenSelectionsTextures[] = {
+            "\uniform\data\texture\uniform_m03.paa"
+        };
     };
     class LAMBS_ScoutD_F : LAMBS_SoldierD_F {
         displayName = "Rifleman [M03] (Rolled-up)";
@@ -96,39 +96,39 @@ class cfgVehicles {
         displayName = "Rifleman [Multicam]";
         uniformClass ="LAMBS_U_CombatUniformMC";
         model = "\A3\Characters_F\BLUFOR\b_soldier_01.p3d";
-        
-	    hiddenSelections[] = {
-			"Camo",
+
+        hiddenSelections[] = {
+            "Camo",
             "insignia"
-		};
-		hiddenSelectionsTextures[] = {
-			"\lambs_uniform\data\texture\uniform_mc.paa"
-		};        
+        };
+        hiddenSelectionsTextures[] = {
+            "\uniform\data\texture\uniform_mc.paa"
+        };
     };
     class LAMBS_RunnerMC_F : LAMBS_SoldierMC_F {
         displayName = "Rifleman [Multicam] (T-shirt)";
         uniformClass ="LAMBS_U_CombatUniformMC_tshirt";
         model = "\A3\Characters_F\BLUFOR\b_soldier_02.p3d";
-    };      
+    };
     class LAMBS_ScoutMC_F : LAMBS_SoldierMC_F {
         displayName = "Rifleman [Multicam] (Rolled-up)";
         uniformClass ="LAMBS_U_CombatUniformMC_shortsleeve";
         model = "\A3\Characters_F\BLUFOR\b_soldier_03.p3d";
-    };  
+    };
     // Snow
     class LAMBS_SoldierS_F : LAMBS_Soldier_F {
         displayName = "Rifleman [Snow]";
         uniformClass ="LAMBS_U_CombatUniformSNOW";
         model = "\A3\Characters_F\BLUFOR\b_soldier_01.p3d";
         //model = "\A3\Characters_F_Exp\BLUFOR\B_CTRG_Soldier_01_F.p3d";
-        
-	    hiddenSelections[] = {
-			"Camo",
+
+        hiddenSelections[] = {
+            "Camo",
             "insignia"
-		};
-		hiddenSelectionsTextures[] = {
-			"\lambs_uniform\data\texture\uniform_snow.paa"
-		};        
+        };
+        hiddenSelectionsTextures[] = {
+            "\uniform\data\texture\uniform_snow.paa"
+        };
     };
     class LAMBS_ScoutS_F : LAMBS_SoldierS_F {
         displayName = "Rifleman [Snow] (Rolled-up)";
@@ -141,14 +141,14 @@ class cfgVehicles {
         uniformClass ="LAMBS_U_CombatUniformBlack";
         model = "\A3\Characters_F\BLUFOR\b_soldier_01.p3d";
         //model = "\A3\Characters_F_Exp\BLUFOR\B_CTRG_Soldier_01_F.p3d";
-        
-	    hiddenSelections[] = {
-			"Camo",
+
+        hiddenSelections[] = {
+            "Camo",
             "insignia"
-		};
-		hiddenSelectionsTextures[] = {
-			"\lambs_uniform\data\texture\uniform_black.paa"
-		};        
+        };
+        hiddenSelectionsTextures[] = {
+            "\uniform\data\texture\uniform_black.paa"
+        };
     };
     class LAMBS_ScoutB_F : LAMBS_SoldierB_F {
         displayName = "Rifleman [Black] (Thermal Suit)";
@@ -156,27 +156,27 @@ class cfgVehicles {
         model = "\A3\Characters_F_Exp\BLUFOR\B_CTRG_Soldier_01_F.p3d";
     };
 
-    // Ghillie suit 
+    // Ghillie suit
     class LAMBS_Sniper_F : I_Sniper_F {
-        scope = 1; 
+        scope = 1;
         author = "nopryl.no";
-        side = 1; 
+        side = 1;
         displayName = "Sniper [M98]";
         uniformClass = "LAMBS_U_GhillieSuit";
-	    hiddenSelections[] = {
-			"Camo",
+        hiddenSelections[] = {
+            "Camo",
             "insignia"
-		};
-		hiddenSelectionsTextures[] = {
-			"\lambs_uniform\data\texture\uniform_m98.paa"
-		};       
+        };
+        hiddenSelectionsTextures[] = {
+            "\uniform\data\texture\uniform_m98.paa"
+        };
     };
 
-    // Pilot 
+    // Pilot
     class LAMBS_B_Helipilot_F : B_Helipilot_F {
-        scope = 1; 
+        scope = 1;
         author = "nopryl.no";
-        side = 1; 
+        side = 1;
         displayName = "Helicopter Pilot [M98]";
         uniformClass = "LAMBS_B_HeliPilotCoveralls";
         //model = "\A3\Characters_F\Common\coveralls.p3d";
@@ -185,8 +185,8 @@ class cfgVehicles {
             "insignia"
         };
         hiddenSelectionsTextures[] = {
-            "\lambs_uniform\data\texture\coverall_m98.paa"
-        };           
+            "\uniform\data\texture\coverall_m98.paa"
+        };
     };
 };
 
@@ -195,21 +195,21 @@ class cfgWeapons {
     class U_I_CombatUniform_shortsleeve;
     class U_I_GhillieSuit;
     class U_B_HeliPilotCoveralls;
-    class U_B_CTRG_1; 
+    class U_B_CTRG_1;
     class U_B_CTRG_2;
     class U_B_CTRG_3;
-    class UniformItem; 
+    class UniformItem;
 
-    // Woodland M98 
+    // Woodland M98
     class LAMBS_U_CombatUniform : U_I_CombatUniform {
         author = "nopryl.no";
         displayName = "Combat Fatigues [M98]";
         class ItemInfo : UniformItem {
             uniformModel = "-";
-			uniformClass = "LAMBS_Soldier_F";
-			containerClass = "Supply40";
-			mass = 40;
-		};
+            uniformClass = "LAMBS_Soldier_F";
+            containerClass = "Supply40";
+            mass = 40;
+        };
     };
     class LAMBS_U_CombatUniform_shortsleeve : U_I_CombatUniform_shortsleeve {
         author = "nopryl.no";
@@ -238,11 +238,11 @@ class cfgWeapons {
         displayName = "Combat Fatigues [M03]";
         class ItemInfo : UniformItem {
             uniformModel = "-";
-			uniformClass = "LAMBS_SoldierD_F";
-			containerClass = "Supply40";
-			mass = 40;
-		};
-    }; 
+            uniformClass = "LAMBS_SoldierD_F";
+            containerClass = "Supply40";
+            mass = 40;
+        };
+    };
     class LAMBS_U_CombatUniformD_shortsleeve : U_I_CombatUniform_shortsleeve {
         author = "nopryl.no";
         displayName = "Combat Fatigues [M03] (Rolled-up)";
@@ -273,7 +273,7 @@ class cfgWeapons {
             containerClass = "Supply40";
             mass = 40;
         };
-    };    
+    };
     class LAMBS_U_CombatUniformMC_shortsleeve : U_B_CTRG_3 {
         author = "nopryl.no";
         displayName = "Combat Fatigues [Multicam] (Rolled-up)";
@@ -305,7 +305,7 @@ class cfgWeapons {
             mass = 40;
         };
     };
-    // black 
+    // black
     class LAMBS_U_CombatUniformB : U_B_CTRG_1 {
         author = "nopryl.no";
         displayName = "Combat Fatigues [Black]";
@@ -326,16 +326,16 @@ class cfgWeapons {
             mass = 40;
         };
     };
-    // ghillie 
+    // ghillie
     class LAMBS_U_GhillieSuit : U_I_GhillieSuit {
         author = "nopryl.no";
         displayName = "Ghillie Suit [M98]";
         class ItemInfo : UniformItem {
             uniformModel = "-";
-			uniformClass = "LAMBS_sniper_F";
+            uniformClass = "LAMBS_sniper_F";
             containerClass = "Supply60";
             mass = 60;
-		};
+        };
     };
     // pilot
     class LAMBS_B_HeliPilotCoveralls : U_B_HeliPilotCoveralls {
@@ -343,9 +343,9 @@ class cfgWeapons {
         displayName = "Heli Pilot Coveralls [M98]";
         class ItemInfo : UniformItem {
             uniformModel = "-";
-			uniformClass = "LAMBS_B_Helipilot_F";
+            uniformClass = "LAMBS_B_Helipilot_F";
             containerClass = "Supply40";
             mass = 60;
-		};
-    };        
+        };
+    };
 };
