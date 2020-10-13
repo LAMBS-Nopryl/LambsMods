@@ -40,7 +40,7 @@ GVAR(binoClasses) = "getText (_x >> 'simulation') == 'Binocular'" configClasses 
 ["acre_stoppedSpeaking", {
     params ["_unit", "_onRadio"];
 
-    if (!_onRadio || {!GVAR(enabled)}) exitWith {systemChat "bye"};
+    if (!_onRadio || {!GVAR(enabled)}) exitWith {};
 
     if (ace_common_isReloading || {_unit getVariable [QGVAR(onRadio), false]}) then {
         // If the unit started a reload while already talking, need to wait to finish to not delete a magazine
